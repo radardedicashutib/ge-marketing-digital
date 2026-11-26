@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -27,7 +26,6 @@ header{position:sticky;top:0;z-index:50;background:#050b18ed;backdrop-filter:blu
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(110deg,#0756ed,#1685ff);border:1px solid #348dff66;border-radius:8px;padding:13px 19px;color:white;font-weight:800;font-size:12px;letter-spacing:.3px;box-shadow:0 0 25px #0865ff35;transition:.2s}
 .btn:hover{transform:translateY(-2px);box-shadow:0 0 30px #0865ff80}
 .btn.secondary{background:transparent;border:1px solid #ffffff38;box-shadow:none}
-.btn.green{background:#119b75;border:0}
 .hero{max-width:1320px;margin:10px auto 0;border:1px solid #1b3153;border-radius:17px;overflow:hidden;position:relative;background:linear-gradient(90deg,#050b18 0%,#07152c 48%,#07152cdd 100%)}
 .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#050b18 0%,#050b18ed 38%,#050b1880 66%,#050b18a8 100%),url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1500&q=85") center right/cover;z-index:0}
 .hero:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 72% 45%,#076aff35,transparent 40%);pointer-events:none}
@@ -106,6 +104,19 @@ footer a{color:#5aa9ff}
 .actions button{border:0;padding:8px 10px;border-radius:6px;font-weight:bold}
 .edit{background:#174b83;color:white}.del{background:#812b39;color:white}
 .hidden{display:none!important}
+.crm-layout{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(0,1.5fr);gap:14px}
+.crm-list{display:grid;gap:8px;max-height:650px;overflow:auto}
+.crm-lead{display:block;width:100%;text-align:left;background:#08172c;color:#eaf2ff;border:1px solid #284362;border-radius:8px;padding:13px;cursor:pointer}
+.crm-lead.selected{border-color:#2587ff;background:#10294a}
+.crm-lead small{display:block;color:#9bb0ca;margin-top:5px}
+.crm-detail{border:1px solid #284362;border-radius:9px;padding:16px;min-width:0}
+.crm-detail .field{margin:10px 0}
+.crm-detail label{display:block;font-size:11px;margin-bottom:6px;color:#d6e3f7}
+.crm-detail input,.crm-detail textarea,.crm-detail select{width:100%;padding:11px;border-radius:7px;border:1px solid #274262;background:#061225;color:white}
+.crm-history{display:grid;gap:8px;margin-top:12px}
+.crm-history article{padding:10px;border-left:2px solid #2587ff;background:#071326;border-radius:5px;font-size:12px}
+.crm-history small{display:block;color:#91a6c1;margin-top:5px}
+@media(max-width:760px){.crm-layout{grid-template-columns:1fr}}
 .login{max-width:400px;margin:20px auto;background:#09172c;border:1px solid #284362;padding:22px;border-radius:12px}
 .login input{margin:6px 0}
 .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
@@ -138,8 +149,7 @@ footer a{color:#5aa9ff}
 </style>
 </head>
 <body>
-
-<header>
+  <header>
 <nav class="nav">
 <a class="logo" href="#">GE <span>MARKETING DIGITAL</span></a>
 <div class="navlinks">
@@ -213,7 +223,9 @@ footer a{color:#5aa9ff}
 <h2>Empresas e marcas em destaque</h2>
 <p>Um espaço para apresentar empresas, parceiros e anunciantes da GE.</p>
 </div>
-<div class="grid" id="companiesList"><div class="empty">Carregando empresas...</div></div>
+<div class="grid" id="companiesList">
+<div class="empty">Carregando empresas...</div>
+</div>
 <div class="brand-row">
 <div class="brand">TECNOLOGIA<small>ESPAÇO PARA MARCAS</small></div>
 <div class="brand">MODA<small>ESPAÇO PARA MARCAS</small></div>
@@ -230,7 +242,9 @@ footer a{color:#5aa9ff}
 <h2>Campanhas e conteúdos</h2>
 <p>Conheça as campanhas e divulgações publicadas pela nossa equipe.</p>
 </div>
-<div class="grid" id="campaignsList"><div class="empty">Carregando campanhas...</div></div>
+<div class="grid" id="campaignsList">
+<div class="empty">Carregando campanhas...</div>
+</div>
 </section>
 
 <section class="container">
@@ -270,73 +284,201 @@ footer a{color:#5aa9ff}
 <h2>Fale com a GE MARKETING DIGITAL</h2>
 <p>Conte um pouco sobre sua empresa e sua necessidade de divulgação.</p>
 </div>
+
 <form class="formbox" id="leadForm">
-<div class="field"><label>Seu nome *</label><input id="leadName" required maxlength="100" placeholder="Nome completo"></div>
-<div class="field"><label>Empresa ou marca *</label><input id="leadCompany" required maxlength="150" placeholder="Nome da empresa"></div>
-<div class="field"><label>WhatsApp *</label><input id="leadPhone" required maxlength="30" placeholder="(11) 99999-9999"></div>
-<div class="field"><label>E-mail</label><input id="leadEmail" type="email" maxlength="150" placeholder="seuemail@empresa.com"></div>
-<div class="field"><label>Serviço de interesse</label>
-<select id="leadService">
-<option>Publicidade digital</option><option>Vídeos UGC</option>
-<option>Marketing de afiliados</option><option>Divulgação de empresa</option>
-<option>Parceria comercial</option><option>Outro</option>
+<div class="field">
+<label>Seu nome *</label>
+<input id="leadName" required maxlength="100" placeholder="Nome completo">
+</div>
+
+<div class="field">
+<label>Empresa ou marca *</label>
+<input id="leadCompany" required maxlength="150" placeholder="Nome da empresa">
+</div>
+
+<div class="field">
+<label>Telefone ou WhatsApp (opcional)</label>
+<input id="leadPhone" maxlength="30" placeholder="(11) 99999-9999">
+</div>
+
+<div class="field">
+<label>E-mail (opcional)</label>
+<input id="leadEmail" type="email" maxlength="150" placeholder="seuemail@empresa.com">
+</div>
+
+<div class="field">
+<label>Serviço de interesse *</label>
+<select id="leadService" required>
+<option value="">Selecione um serviço</option>
+<option>Publicidade digital</option>
+<option>Vídeos UGC</option>
+<option>Marketing de afiliados</option>
+<option>Divulgação de empresa</option>
+<option>Parceria comercial</option>
+<option>Outro</option>
 </select>
 </div>
-<div class="field"><label>Mensagem</label><textarea id="leadMessage" maxlength="1500" placeholder="Como podemos ajudar sua empresa?"></textarea></div>
-<button class="btn" id="leadSubmit">ENVIAR SOLICITAÇÃO →</button>
+
+<div class="field">
+<label>Mensagem *</label>
+<textarea id="leadMessage" required maxlength="1500" placeholder="Como podemos ajudar sua empresa?"></textarea>
+</div>
+
+<button class="btn" id="leadSubmit" type="submit">ENVIAR SOLICITAÇÃO →</button>
 <p class="status" id="leadStatus">Seus dados serão utilizados para responder à sua solicitação comercial.</p>
 </form>
-<div style="text-align:center"><a class="btn green" id="whatsappButton" href="#contato" target="_blank" rel="noopener">FALAR PELO WHATSAPP</a></div>
 </section>
 </main>
 
 <section class="admin-area" id="adminArea">
 <div class="admin-wrap">
+
 <div class="admin-panel">
 <h2>GE | Painel administrativo</h2>
 <p>Gerencie empresas, campanhas e solicitações comerciais.</p>
 <button class="btn" onclick="logout()">SAIR DO PAINEL</button>
+
 <div class="tabs">
 <button class="active" onclick="showTab('companies',this)">Empresas</button>
 <button onclick="showTab('campaigns',this)">Campanhas</button>
-<button onclick="showTab('leads',this)">Solicitações</button>
+<button onclick="showTab('leads',this)">Solicitações / CRM</button>
 </div>
 </div>
+
 <div class="admin-panel admin-tab" id="tab-companies">
 <h3>Cadastro de empresa</h3>
+
 <form class="admin-form" id="companyForm">
 <input id="companyId" type="hidden">
-<div><label>Nome</label><input id="companyName" required maxlength="150"></div>
-<div><label>Categoria</label><input id="companyCategory" maxlength="100"></div>
-<div class="full"><label>Descrição</label><textarea id="companyDescription" maxlength="1000"></textarea></div>
-<div><label>Imagem (URL)</label><input id="companyImage" type="url"></div>
-<div><label>Site (URL)</label><input id="companyLink" type="url"></div>
-<div><label>WhatsApp</label><input id="companyWhatsapp" maxlength="30"></div>
-<div><label>Visibilidade</label><select id="companyPublished"><option value="true">Publicado</option><option value="false">Rascunho</option></select></div>
+
+<div>
+<label>Nome</label>
+<input id="companyName" required maxlength="150">
+</div>
+
+<div>
+<label>Categoria</label>
+<input id="companyCategory" maxlength="100">
+</div>
+
+<div class="full">
+<label>Descrição</label>
+<textarea id="companyDescription" maxlength="1000"></textarea>
+</div>
+
+<div>
+<label>Imagem (URL)</label>
+<input id="companyImage" type="url">
+</div>
+
+<div>
+<label>Site (URL)</label>
+<input id="companyLink" type="url">
+</div>
+
+<div>
+<label>WhatsApp da empresa anunciada (opcional)</label>
+<input id="companyWhatsapp" maxlength="30">
+</div>
+
+<div>
+<label>Visibilidade</label>
+<select id="companyPublished">
+<option value="true">Publicado</option>
+<option value="false">Rascunho</option>
+</select>
+</div>
+
 <button class="btn full" type="submit">SALVAR EMPRESA</button>
 <button class="btn secondary full" type="button" onclick="resetCompany()">LIMPAR</button>
 </form>
-<h3>Empresas cadastradas</h3><div class="admin-list" id="adminCompanies"></div>
+
+<h3>Empresas cadastradas</h3>
+<div class="admin-list" id="adminCompanies"></div>
 </div>
+
 <div class="admin-panel admin-tab hidden" id="tab-campaigns">
 <h3>Cadastro de campanha</h3>
+
 <form class="admin-form" id="campaignForm">
 <input id="campaignId" type="hidden">
-<div><label>Título</label><input id="campaignTitle" required maxlength="150"></div>
-<div><label>Tipo</label><select id="campaignType"><option>Publicidade</option><option>UGC</option><option>Afiliado</option><option>Oferta</option></select></div>
-<div class="full"><label>Descrição</label><textarea id="campaignDescription" maxlength="1200"></textarea></div>
-<div><label>Imagem (URL)</label><input id="campaignImage" type="url"></div>
-<div><label>Link de destino</label><input id="campaignLink" type="url"></div>
-<div><label>Empresa relacionada</label><select id="campaignCompany"><option value="">Sem empresa vinculada</option></select></div>
-<div><label>Visibilidade</label><select id="campaignPublished"><option value="true">Publicado</option><option value="false">Rascunho</option></select></div>
+
+<div>
+<label>Título</label>
+<input id="campaignTitle" required maxlength="150">
+</div>
+
+<div>
+<label>Tipo</label>
+<select id="campaignType">
+<option>Publicidade</option>
+<option>UGC</option>
+<option>Afiliado</option>
+<option>Oferta</option>
+</select>
+</div>
+
+<div class="full">
+<label>Descrição</label>
+<textarea id="campaignDescription" maxlength="1200"></textarea>
+</div>
+
+<div>
+<label>Imagem (URL)</label>
+<input id="campaignImage" type="url">
+</div>
+
+<div>
+<label>Link de destino</label>
+<input id="campaignLink" type="url">
+</div>
+
+<div>
+<label>Empresa relacionada</label>
+<select id="campaignCompany">
+<option value="">Sem empresa vinculada</option>
+</select>
+</div>
+
+<div>
+<label>Visibilidade</label>
+<select id="campaignPublished">
+<option value="true">Publicado</option>
+<option value="false">Rascunho</option>
+</select>
+</div>
+
 <button class="btn full" type="submit">SALVAR CAMPANHA</button>
 <button class="btn secondary full" type="button" onclick="resetCampaign()">LIMPAR</button>
 </form>
-<h3>Campanhas cadastradas</h3><div class="admin-list" id="adminCampaigns"></div>
+
+<h3>Campanhas cadastradas</h3>
+<div class="admin-list" id="adminCampaigns"></div>
 </div>
+
 <div class="admin-panel admin-tab hidden" id="tab-leads">
-<h3>Solicitações recebidas</h3><div class="admin-list" id="adminLeads"></div>
+<h3>Solicitações recebidas — CRM</h3>
+<p>Selecione uma solicitação para consultar os dados, atualizar o atendimento e registrar observações internas.</p>
+
+<div class="field">
+<label>Pesquisar solicitações</label>
+<input id="leadSearch" placeholder="Pesquisar por nome, empresa ou serviço..." oninput="renderLeadList()">
 </div>
+
+<div class="crm-layout">
+<div>
+<h4>Lista de solicitações</h4>
+<div class="crm-list" id="adminLeads">
+Carregando solicitações...
+</div>
+</div>
+
+<div class="crm-detail" id="leadDetail">
+<p>Selecione uma solicitação na lista para visualizar os detalhes.</p>
+</div>
+</div>
+</div>
+
 </div>
 </section>
 
@@ -357,191 +499,785 @@ Sua marca merece ser vista.<br>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
+  <script>
 const SUPABASE_URL="https://eefhhutbowjwnxfsecjd.supabase.co";
 const SUPABASE_KEY="sb_publishable_SdRT7jPMqT_ZgQvVNcyazg_vKFjKY_a";
-const WHATSAPP_NUMBER="";
 
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
-let isAdmin=false,companies=[],campaigns=[];
-const $=id=>document.getElementById(id);
-const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const validUrl=v=>{try{let u=new URL(v);return ["http:","https:"].includes(u.protocol)?u.href:""}catch{return ""}};
-$("year").textContent=new Date().getFullYear();
 
-$("whatsappButton").href=WHATSAPP_NUMBER
-?"https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent("Olá! Quero conhecer os serviços da GE MARKETING DIGITAL.")
-:"#contato";
+let isAdmin=false;
+let companies=[];
+let campaigns=[];
+let leads=[];
+let selectedLead=null;
+
+const $=id=>document.getElementById(id);
+
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#39;"
+}[c]));
+
+const validUrl=v=>{
+try{
+let u=new URL(v);
+return ["http:","https:"].includes(u.protocol)?u.href:"";
+}catch{
+return "";
+}
+};
+
+$("year").textContent=new Date().getFullYear();
 
 function imageOrPlaceholder(url){
 return validUrl(url)||"https://placehold.co/600x400/09172c/55aaff?text=GE+MARKETING";
 }
 
+/* =========================
+   CONTEÚDO PÚBLICO
+========================= */
+
 async function loadPublic(){
+
 const [c,p]=await Promise.all([
-db.from("ge_companies").select("*").eq("published",true).order("created_at",{ascending:false}),
-db.from("ge_campaigns").select("*,ge_companies(name)").eq("published",true).order("created_at",{ascending:false})
+db.from("ge_companies")
+.select("*")
+.eq("published",true)
+.order("created_at",{ascending:false}),
+
+db.from("ge_campaigns")
+.select("*,ge_companies(name)")
+.eq("published",true)
+.order("created_at",{ascending:false})
 ]);
-companies=c.data||[];campaigns=p.data||[];
-$("companiesList").innerHTML=companies.length?companies.map(x=>`
+
+if(c.error)console.error("Erro empresas:",c.error);
+if(p.error)console.error("Erro campanhas:",p.error);
+
+companies=c.data||[];
+campaigns=p.data||[];
+
+$("companiesList").innerHTML=companies.length
+?companies.map(x=>`
 <article class="card company-card">
 <img src="${esc(imageOrPlaceholder(x.image_url))}" alt="${esc(x.name)}" loading="lazy">
 <span class="tag">${esc(x.category||"Empresa parceira")}</span>
-<h3>${esc(x.name)}</h3><p>${esc(x.description||"Conheça esta empresa.")}</p>
-${validUrl(x.link)?`<a class="btn" href="${esc(validUrl(x.link))}" target="_blank" rel="noopener">CONHECER EMPRESA →</a>`:""}
-</article>`).join(""):'<div class="empty">Em breve, novas empresas e marcas serão apresentadas aqui.</div>';
+<h3>${esc(x.name)}</h3>
+<p>${esc(x.description||"Conheça esta empresa.")}</p>
+${validUrl(x.link)?`
+<a class="btn" href="${esc(validUrl(x.link))}" target="_blank" rel="noopener">
+CONHECER EMPRESA →
+</a>`:""}
+</article>
+`).join("")
+:'<div class="empty">Em breve, novas empresas e marcas serão apresentadas aqui.</div>';
 
-$("campaignsList").innerHTML=campaigns.length?campaigns.map(x=>`
+$("campaignsList").innerHTML=campaigns.length
+?campaigns.map(x=>`
 <article class="card campaign-card">
 <img src="${esc(imageOrPlaceholder(x.image_url))}" alt="${esc(x.title)}" loading="lazy">
 <span class="tag">${esc(x.type||"Campanha")}</span>
-<h3>${esc(x.title)}</h3><p>${esc(x.description||"Confira esta campanha.")}</p>
+<h3>${esc(x.title)}</h3>
+<p>${esc(x.description||"Confira esta campanha.")}</p>
 ${x.ge_companies?.name?`<p>${esc(x.ge_companies.name)}</p>`:""}
-${validUrl(x.link)?`<a class="btn" href="${esc(validUrl(x.link))}" target="_blank" rel="noopener">SAIBA MAIS →</a>`:""}
-</article>`).join(""):'<div class="empty">Nenhuma campanha publicada no momento.</div>';
+${validUrl(x.link)?`
+<a class="btn" href="${esc(validUrl(x.link))}" target="_blank" rel="noopener">
+SAIBA MAIS →
+</a>`:""}
+</article>
+`).join("")
+:'<div class="empty">Nenhuma campanha publicada no momento.</div>';
 }
 
+/* =========================
+   FORMULÁRIO DE CONTATO
+========================= */
+
 $("leadForm").addEventListener("submit",async e=>{
+
 e.preventDefault();
-const button=$("leadSubmit"),status=$("leadStatus");
-button.disabled=true;button.textContent="ENVIANDO...";
+
+const button=$("leadSubmit");
+const status=$("leadStatus");
+
+button.disabled=true;
+button.textContent="ENVIANDO...";
+status.textContent="Enviando sua solicitação...";
+
 const record={
 name:$("leadName").value.trim(),
 company:$("leadCompany").value.trim(),
-phone:$("leadPhone").value.trim(),
+phone:$("leadPhone").value.trim()||null,
 email:$("leadEmail").value.trim()||null,
 service:$("leadService").value,
 message:$("leadMessage").value.trim(),
 status:"Novo"
 };
-const {error}=await db.from("ge_leads").insert(record);
-button.disabled=false;button.textContent="ENVIAR SOLICITAÇÃO →";
-if(error){status.textContent="Não foi possível enviar. Tente novamente ou fale pelo WhatsApp.";console.error(error);return}
-$("leadForm").reset();status.textContent="Solicitação enviada! Obrigado pelo contato.";
+
+const {data,error}=await db
+.from("ge_leads")
+.insert(record)
+.select("id")
+.single();
+
+button.disabled=false;
+button.textContent="ENVIAR SOLICITAÇÃO →";
+
+if(error){
+console.error(error);
+status.textContent="Não foi possível enviar sua solicitação. Tente novamente mais tarde.";
+return;
+}
+
+/* Registra o primeiro evento no histórico */
+if(data?.id){
+const historyResult=await db
+.from("ge_lead_history")
+.insert({
+lead_id:data.id,
+description:"Solicitação recebida pelo formulário do site."
 });
+
+if(historyResult.error){
+console.error("Histórico inicial:",historyResult.error);
+}
+}
+
+$("leadForm").reset();
+status.textContent="Solicitação enviada com sucesso! Obrigado por entrar em contato com a GE.";
+
+});
+
+/* =========================
+   LOGIN E AUTORIZAÇÃO
+========================= */
 
 function toggleLogin(){
+
 $("loginBox").classList.toggle("hidden");
-$("loginBox").scrollIntoView({behavior:"smooth",block:"center"});
-}
-async function login(){
-$("loginStatus").textContent="Verificando acesso...";
-const {error}=await db.auth.signInWithPassword({
-email:$("adminEmail").value.trim(),password:$("adminPassword").value
+
+$("loginBox").scrollIntoView({
+behavior:"smooth",
+block:"center"
 });
-if(error){$("loginStatus").textContent="Falha no login: "+error.message;return}
-$("loginStatus").textContent="Login realizado.";
 }
-async function logout(){await db.auth.signOut()}
+
+async function verifyAdmin(){
+
+const {data,error}=await db.rpc("is_ge_admin");
+
+if(error){
+console.error("Não foi possível verificar administrador:",error);
+return false;
+}
+
+return data===true;
+}
+
+async function login(){
+
+const email=$("adminEmail").value.trim();
+const password=$("adminPassword").value;
+
+if(!email||!password){
+$("loginStatus").textContent="Informe seu e-mail e sua senha.";
+return;
+}
+
+$("loginStatus").textContent="Verificando acesso...";
+
+const {error}=await db.auth.signInWithPassword({
+email,
+password
+});
+
+if(error){
+$("loginStatus").textContent="Falha no login: "+error.message;
+return;
+}
+
+const authorized=await verifyAdmin();
+
+if(!authorized){
+await db.auth.signOut();
+$("loginStatus").textContent="Esta conta não possui autorização administrativa.";
+setAdmin(false);
+return;
+}
+
+$("loginStatus").textContent="Acesso autorizado.";
+setAdmin(true);
+}
+
+async function logout(){
+await db.auth.signOut();
+setAdmin(false);
+}
+
 function setAdmin(value){
+
 isAdmin=value;
+
 $("adminArea").style.display=value?"block":"none";
 $("loginBox").classList.add("hidden");
-if(value)loadAdmin();
+
+if(value){
+loadAdmin();
+}else{
+selectedLead=null;
 }
-db.auth.onAuthStateChange((_event,session)=>setAdmin(!!session));
+}
+
+db.auth.onAuthStateChange(async(_event,session)=>{
+
+if(!session){
+setAdmin(false);
+return;
+}
+
+const authorized=await verifyAdmin();
+setAdmin(authorized);
+
+if(!authorized){
+await db.auth.signOut();
+}
+});
+
+/* =========================
+   ABAS DO PAINEL
+========================= */
 
 function showTab(name,button){
-document.querySelectorAll(".admin-tab").forEach(x=>x.classList.add("hidden"));
+
+document.querySelectorAll(".admin-tab")
+.forEach(x=>x.classList.add("hidden"));
+
 $("tab-"+name).classList.remove("hidden");
-document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));
+
+document.querySelectorAll(".tabs button")
+.forEach(x=>x.classList.remove("active"));
+
 button.classList.add("active");
 }
-function resetCompany(){$("companyForm").reset();$("companyId").value=""}
-function resetCampaign(){$("campaignForm").reset();$("campaignId").value=""}
 
-async function loadAdmin(){
-if(!isAdmin)return;
-const [c,p,l]=await Promise.all([
-db.from("ge_companies").select("*").order("created_at",{ascending:false}),
-db.from("ge_campaigns").select("*").order("created_at",{ascending:false}),
-db.from("ge_leads").select("*").order("created_at",{ascending:false})
-]);
-if(c.error||p.error||l.error){alert("Erro ao carregar painel. Verifique as tabelas e permissões no Supabase.");console.error(c.error,p.error,l.error);return}
-companies=c.data||[];campaigns=p.data||[];
-$("campaignCompany").innerHTML='<option value="">Sem empresa vinculada</option>'+companies.map(x=>`<option value="${esc(x.id)}">${esc(x.name)}</option>`).join("");
-$("adminCompanies").innerHTML=companies.map(x=>`
-<div class="admin-item"><div><strong>${esc(x.name)}</strong><small>${esc(x.category||"")} • ${x.published?"Publicado":"Rascunho"}</small></div>
-<div class="actions"><button class="edit" onclick="editCompany('${x.id}')">EDITAR</button><button class="del" onclick="deleteRecord('ge_companies','${x.id}')">EXCLUIR</button></div></div>`).join("")||"Nenhuma empresa cadastrada.";
-$("adminCampaigns").innerHTML=campaigns.map(x=>`
-<div class="admin-item"><div><strong>${esc(x.title)}</strong><small>${esc(x.type)} • ${x.published?"Publicado":"Rascunho"}</small></div>
-<div class="actions"><button class="edit" onclick="editCampaign('${x.id}')">EDITAR</button><button class="del" onclick="deleteRecord('ge_campaigns','${x.id}')">EXCLUIR</button></div></div>`).join("")||"Nenhuma campanha cadastrada.";
-$("adminLeads").innerHTML=(l.data||[]).map(x=>`
-<div class="admin-item"><div><strong>${esc(x.name)} — ${esc(x.company)}</strong>
-<small>${esc(x.phone)} • ${esc(x.email||"Sem e-mail")} • ${esc(x.service)}</small>
-<small>${esc(x.message||"Sem mensagem")} • Status: ${esc(x.status)}</small></div>
-<div class="actions"><button class="edit" onclick="updateLead('${x.id}','Em atendimento')">EM ATENDIMENTO</button><button class="del" onclick="deleteRecord('ge_leads','${x.id}')">EXCLUIR</button></div></div>`).join("")||"Nenhuma solicitação recebida.";
+function resetCompany(){
+$("companyForm").reset();
+$("companyId").value="";
 }
 
+function resetCampaign(){
+$("campaignForm").reset();
+$("campaignId").value="";
+}
+
+/* =========================
+   CARREGAMENTO ADMINISTRATIVO
+========================= */
+
+async function loadAdmin(){
+
+if(!isAdmin)return;
+
+const [c,p,l]=await Promise.all([
+
+db.from("ge_companies")
+.select("*")
+.order("created_at",{ascending:false}),
+
+db.from("ge_campaigns")
+.select("*")
+.order("created_at",{ascending:false}),
+
+db.from("ge_leads")
+.select("*")
+.order("created_at",{ascending:false})
+
+]);
+
+if(c.error||p.error||l.error){
+
+console.error(c.error,p.error,l.error);
+
+alert("Erro ao carregar o painel. Verifique as permissões e o limite de uso do Supabase.");
+return;
+}
+
+companies=c.data||[];
+campaigns=p.data||[];
+leads=l.data||[];
+
+$("campaignCompany").innerHTML=
+'<option value="">Sem empresa vinculada</option>'+
+companies.map(x=>`
+<option value="${esc(x.id)}">${esc(x.name)}</option>
+`).join("");
+
+$("adminCompanies").innerHTML=companies.map(x=>`
+<div class="admin-item">
+<div>
+<strong>${esc(x.name)}</strong>
+<small>${esc(x.category||"")} • ${x.published?"Publicado":"Rascunho"}</small>
+</div>
+<div class="actions">
+<button class="edit" onclick="editCompany('${x.id}')">EDITAR</button>
+<button class="del" onclick="deleteRecord('ge_companies','${x.id}')">EXCLUIR</button>
+</div>
+</div>
+`).join("")||"Nenhuma empresa cadastrada.";
+
+$("adminCampaigns").innerHTML=campaigns.map(x=>`
+<div class="admin-item">
+<div>
+<strong>${esc(x.title)}</strong>
+<small>${esc(x.type)} • ${x.published?"Publicado":"Rascunho"}</small>
+</div>
+<div class="actions">
+<button class="edit" onclick="editCampaign('${x.id}')">EDITAR</button>
+<button class="del" onclick="deleteRecord('ge_campaigns','${x.id}')">EXCLUIR</button>
+</div>
+</div>
+`).join("")||"Nenhuma campanha cadastrada.";
+
+renderLeadList();
+
+}
+
+/* =========================
+   CADASTRO DE EMPRESAS
+========================= */
+
 $("companyForm").addEventListener("submit",async e=>{
-e.preventDefault();if(!isAdmin)return;
+
+e.preventDefault();
+
+if(!isAdmin)return;
+
 const id=$("companyId").value;
+
 const record={
-name:$("companyName").value.trim(),category:$("companyCategory").value.trim(),
+name:$("companyName").value.trim(),
+category:$("companyCategory").value.trim(),
 description:$("companyDescription").value.trim(),
 image_url:validUrl($("companyImage").value)||null,
 link:validUrl($("companyLink").value)||null,
 whatsapp:$("companyWhatsapp").value.trim(),
 published:$("companyPublished").value==="true"
 };
-const result=id?await db.from("ge_companies").update(record).eq("id",id):await db.from("ge_companies").insert(record);
-if(result.error){alert("Erro ao salvar empresa: "+result.error.message);return}
-resetCompany();await loadAdmin();await loadPublic();alert("Empresa salva!");
+
+const result=id
+?await db.from("ge_companies").update(record).eq("id",id)
+:await db.from("ge_companies").insert(record);
+
+if(result.error){
+alert("Erro ao salvar empresa: "+result.error.message);
+return;
+}
+
+resetCompany();
+await loadAdmin();
+await loadPublic();
+
+alert("Empresa salva com sucesso!");
+
 });
 
+/* =========================
+   CADASTRO DE CAMPANHAS
+========================= */
+
 $("campaignForm").addEventListener("submit",async e=>{
-e.preventDefault();if(!isAdmin)return;
+
+e.preventDefault();
+
+if(!isAdmin)return;
+
 const id=$("campaignId").value;
+
 const record={
-title:$("campaignTitle").value.trim(),type:$("campaignType").value,
+title:$("campaignTitle").value.trim(),
+type:$("campaignType").value,
 description:$("campaignDescription").value.trim(),
 image_url:validUrl($("campaignImage").value)||null,
 link:validUrl($("campaignLink").value)||null,
 company_id:$("campaignCompany").value||null,
 published:$("campaignPublished").value==="true"
 };
-const result=id?await db.from("ge_campaigns").update(record).eq("id",id):await db.from("ge_campaigns").insert(record);
-if(result.error){alert("Erro ao salvar campanha: "+result.error.message);return}
-resetCampaign();await loadAdmin();await loadPublic();alert("Campanha salva!");
+
+const result=id
+?await db.from("ge_campaigns").update(record).eq("id",id)
+:await db.from("ge_campaigns").insert(record);
+
+if(result.error){
+alert("Erro ao salvar campanha: "+result.error.message);
+return;
+}
+
+resetCampaign();
+await loadAdmin();
+await loadPublic();
+
+alert("Campanha salva com sucesso!");
+
 });
 
+/* =========================
+   EDIÇÃO DE EMPRESAS
+========================= */
+
 function editCompany(id){
-const x=companies.find(v=>v.id===id);if(!x)return;
-$("companyId").value=x.id;$("companyName").value=x.name;
+
+const x=companies.find(v=>v.id===id);
+if(!x)return;
+
+$("companyId").value=x.id;
+$("companyName").value=x.name;
 $("companyCategory").value=x.category||"";
 $("companyDescription").value=x.description||"";
 $("companyImage").value=x.image_url||"";
 $("companyLink").value=x.link||"";
 $("companyWhatsapp").value=x.whatsapp||"";
 $("companyPublished").value=String(x.published);
-$("tab-companies").scrollIntoView({behavior:"smooth"});
+
+$("tab-companies").scrollIntoView({
+behavior:"smooth"
+});
 }
+
+/* =========================
+   EDIÇÃO DE CAMPANHAS
+========================= */
+
 function editCampaign(id){
-const x=campaigns.find(v=>v.id===id);if(!x)return;
-$("campaignId").value=x.id;$("campaignTitle").value=x.title;
+
+const x=campaigns.find(v=>v.id===id);
+if(!x)return;
+
+$("campaignId").value=x.id;
+$("campaignTitle").value=x.title;
 $("campaignType").value=x.type||"Publicidade";
 $("campaignDescription").value=x.description||"";
 $("campaignImage").value=x.image_url||"";
 $("campaignLink").value=x.link||"";
 $("campaignCompany").value=x.company_id||"";
 $("campaignPublished").value=String(x.published);
-$("tab-campaigns").scrollIntoView({behavior:"smooth"});
+
+$("tab-campaigns").scrollIntoView({
+behavior:"smooth"
+});
 }
-async function updateLead(id,status){
-const {error}=await db.from("ge_leads").update({status}).eq("id",id);
-if(error){alert(error.message);return}loadAdmin();
+
+/* =========================
+   CRM - LISTA DE CLIENTES
+========================= */
+
+function renderLeadList(){
+
+const search=($("leadSearch")?.value||"").toLowerCase();
+
+const filtered=leads.filter(x=>{
+
+const content=[
+x.name,
+x.company,
+x.service,
+x.email,
+x.phone,
+x.status
+].join(" ").toLowerCase();
+
+return content.includes(search);
+});
+
+$("adminLeads").innerHTML=filtered.map(x=>`
+<button type="button"
+class="crm-lead ${selectedLead===x.id?"selected":""}"
+onclick="selectLead('${x.id}')">
+
+<strong>${esc(x.name)}</strong>
+
+<small>${esc(x.company)}</small>
+
+<small>${esc(x.service||"Serviço não informado")}</small>
+
+<small>Status: ${esc(x.status||"Novo")}</small>
+
+</button>
+`).join("")||'<div class="empty">Nenhuma solicitação encontrada.</div>';
 }
+
+/* =========================
+   CRM - DETALHES
+========================= */
+
+async function selectLead(id){
+
+if(!isAdmin)return;
+
+selectedLead=id;
+
+const lead=leads.find(x=>x.id===id);
+if(!lead)return;
+
+renderLeadList();
+
+$("leadDetail").innerHTML=`
+<h3>Detalhes da solicitação</h3>
+
+<p><strong>Cliente:</strong> ${esc(lead.name)}</p>
+<p><strong>Empresa:</strong> ${esc(lead.company)}</p>
+<p><strong>Telefone:</strong> ${esc(lead.phone||"Não informado")}</p>
+<p><strong>E-mail:</strong> ${esc(lead.email||"Não informado")}</p>
+<p><strong>Serviço:</strong> ${esc(lead.service||"Não informado")}</p>
+<p><strong>Mensagem:</strong><br>${esc(lead.message||"Sem mensagem")}</p>
+
+<div class="field">
+<label>Status do atendimento</label>
+<select id="crmStatus">
+<option ${lead.status==="Novo"?"selected":""}>Novo</option>
+<option ${lead.status==="Em atendimento"?"selected":""}>Em atendimento</option>
+<option ${lead.status==="Proposta enviada"?"selected":""}>Proposta enviada</option>
+<option ${lead.status==="Em negociação"?"selected":""}>Em negociação</option>
+<option ${lead.status==="Contrato fechado"?"selected":""}>Contrato fechado</option>
+<option ${lead.status==="Concluído"?"selected":""}>Concluído</option>
+</select>
+</div>
+
+<div class="field">
+<label>Valor da proposta (R$)</label>
+<input id="crmProposal" type="number" min="0" step="0.01"
+value="${esc(lead.proposal_value??"")}" placeholder="Ex.: 1500.00">
+</div>
+
+<div class="field">
+<label>Observações internas</label>
+<textarea id="crmNotes" maxlength="5000"
+placeholder="Anotações privadas da equipe...">${esc(lead.internal_notes||"")}</textarea>
+</div>
+
+<button class="btn" onclick="saveLeadChanges('${lead.id}')">
+SALVAR ALTERAÇÕES
+</button>
+
+<div class="field">
+<label>Adicionar registro ao histórico</label>
+<textarea id="crmHistoryText" maxlength="1000"
+placeholder="Ex.: Cliente recebeu a proposta comercial."></textarea>
+</div>
+
+<button class="btn secondary" onclick="addLeadHistory('${lead.id}')">
+REGISTRAR NO HISTÓRICO
+</button>
+
+<h4>Histórico de atendimento</h4>
+<div class="crm-history" id="crmHistory">
+Carregando histórico...
+</div>
+`;
+
+await loadLeadHistory(id);
+}
+
+/* =========================
+   CRM - SALVAR ALTERAÇÕES
+========================= */
+
+async function saveLeadChanges(id){
+
+if(!isAdmin)return;
+
+const status=$("crmStatus").value;
+const proposal=$("crmProposal").value;
+const notes=$("crmNotes").value.trim();
+
+const lead=leads.find(x=>x.id===id);
+if(!lead)return;
+
+const record={
+status,
+proposal_value:proposal===""?null:Number(proposal),
+internal_notes:notes,
+updated_at:new Date().toISOString()
+};
+
+const {error}=await db
+.from("ge_leads")
+.update(record)
+.eq("id",id);
+
+if(error){
+alert("Erro ao atualizar solicitação: "+error.message);
+return;
+}
+
+const changed=[];
+
+if(lead.status!==status){
+changed.push("Status alterado para: "+status);
+}
+
+if(String(lead.proposal_value??"")!==String(proposal)){
+changed.push("Valor da proposta atualizado.");
+}
+
+if((lead.internal_notes||"")!==notes){
+changed.push("Observações internas atualizadas.");
+}
+
+if(changed.length){
+
+const historyResult=await db
+.from("ge_lead_history")
+.insert({
+lead_id:id,
+description:changed.join(" ")
+});
+
+if(historyResult.error){
+console.error("Erro no histórico:",historyResult.error);
+alert("Dados salvos, mas não foi possível registrar o histórico.");
+}
+}
+
+alert("Solicitação atualizada com sucesso!");
+
+await loadAdmin();
+await selectLead(id);
+}
+
+/* =========================
+   CRM - ADICIONAR HISTÓRICO
+========================= */
+
+async function addLeadHistory(id){
+
+if(!isAdmin)return;
+
+const description=$("crmHistoryText").value.trim();
+
+if(!description){
+alert("Digite uma observação para registrar no histórico.");
+return;
+}
+
+const {error}=await db
+.from("ge_lead_history")
+.insert({
+lead_id:id,
+description
+});
+
+if(error){
+alert("Erro ao registrar histórico: "+error.message);
+console.error(error);
+return;
+}
+
+$("crmHistoryText").value="";
+
+await loadLeadHistory(id);
+
+alert("Registro adicionado ao histórico.");
+}
+
+/* =========================
+   CRM - CONSULTAR HISTÓRICO
+========================= */
+
+async function loadLeadHistory(id){
+
+if(!isAdmin)return;
+
+const container=$("crmHistory");
+
+const {data,error}=await db
+.from("ge_lead_history")
+.select("*")
+.eq("lead_id",id)
+.order("created_at",{ascending:false});
+
+if(error){
+console.error(error);
+container.innerHTML="Não foi possível carregar o histórico.";
+return;
+}
+
+container.innerHTML=(data||[]).map(item=>`
+
+<article>
+${esc(item.description)}
+<small>
+${item.created_at
+?new Date(item.created_at).toLocaleString("pt-BR")
+:"Data não informada"}
+</small>
+</article>
+
+`).join("")||"Não há registros no histórico ainda.";
+
+}
+
+/* =========================
+   EXCLUSÃO DE REGISTROS
+========================= */
+
 async function deleteRecord(table,id){
+
+if(!isAdmin)return;
+
 if(!confirm("Confirma a exclusão deste registro?"))return;
-const {error}=await db.from(table).delete().eq("id",id);
-if(error){alert("Erro: "+error.message);return}
-await loadAdmin();await loadPublic();
+
+const {error}=await db
+.from(table)
+.delete()
+.eq("id",id);
+
+if(error){
+alert("Erro: "+error.message);
+return;
 }
-(async()=>{
-const {data}=await db.auth.getSession();
-setAdmin(!!data.session);
+
+if(table==="ge_leads"){
+selectedLead=null;
+$("leadDetail").innerHTML="<p>Selecione uma solicitação na lista para visualizar os detalhes.</p>";
+}
+
+await loadAdmin();
 await loadPublic();
+
+}
+
+/* =========================
+   INICIALIZAÇÃO
+========================= */
+
+(async()=>{
+
+const {data,error}=await db.auth.getSession();
+
+if(error){
+console.error(error);
+}
+
+if(data?.session){
+
+const authorized=await verifyAdmin();
+setAdmin(authorized);
+
+if(!authorized){
+await db.auth.signOut();
+}
+
+}else{
+setAdmin(false);
+}
+
+await loadPublic();
+
 })();
+
 </script>
 </body>
 </html>
