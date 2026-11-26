@@ -3,422 +3,548 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#101c35">
-<meta name="description" content="GE Marketing Digital: publicidade, campanhas, vídeos UGC e divulgação de marcas.">
-<title>GE MARKETING DIGITAL | Sua marca merece ser vista</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#050b18">
+<title>GE MARKETING DIGITAL | Estratégia. Tecnologia. Crescimento.</title>
 <link rel="manifest" href="./manifest.json">
 <style>
-:root{--navy:#071329;--navy2:#0d2042;--blue:#286cff;--cyan:#69c4ff;--ice:#eef5ff;--white:#fff;--text:#14213a;--muted:#64748b;--line:#dce6f5;--green:#16a34a;--shadow:0 22px 60px rgba(8,27,61,.12)}
+:root{
+--bg:#050b18;--panel:#091529;--blue:#0865ff;--cyan:#42a5ff;
+--white:#f5f8ff;--muted:#a1aec4;--line:#193052;--green:#22d3a0
+}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Arial,sans-serif;background:#f6f8fc;color:var(--text)}
-button,input,textarea,select{font:inherit}button,a{cursor:pointer}a{text-decoration:none;color:inherit}
-header{position:sticky;top:0;z-index:50;background:rgba(5,16,36,.94);backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.09);color:white}
-.nav{max-width:1220px;margin:auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{font-size:19px;font-weight:950;letter-spacing:.6px;white-space:nowrap}.logo span{color:#68b7ff}
-.navlinks{display:flex;align-items:center;gap:26px;font-size:13px;font-weight:650}.navlinks a{color:#d9e6ff;transition:.2s}.navlinks a:hover{color:var(--cyan)}
-.navlinks a.nav-cta{background:var(--blue);color:white;padding:11px 16px;border-radius:9px;box-shadow:0 8px 24px #286cff44}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid transparent;border-radius:10px;padding:14px 20px;background:linear-gradient(110deg,#2464f5,#3989ff);color:white;font-weight:800;text-align:center;box-shadow:0 10px 25px #286cff35;transition:transform .2s,filter .2s}
-.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}.btn.green{background:var(--green);box-shadow:0 10px 25px #16a34a30}.btn.light{background:#fff;color:var(--navy);box-shadow:none}.btn.gray{background:#64748b;box-shadow:none}
-.container{max-width:1220px;margin:auto;padding:76px 24px}
-.hero{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 82% 25%,#1d5bc5 0,transparent 36%),radial-gradient(ellipse at 5% 100%,#123a78 0,transparent 42%),linear-gradient(120deg,#071329 0%,#0b1d3d 55%,#102b59 100%);color:white;padding:88px 24px 96px}
-.hero:before{content:"";position:absolute;inset:0;z-index:-1;opacity:.16;background-image:linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.12) 1px,transparent 1px);background-size:48px 48px;mask-image:linear-gradient(90deg,black,transparent)}
-.hero-inner{max-width:1220px;margin:auto;display:grid;grid-template-columns:1.08fr .92fr;align-items:center;gap:56px}
-.hero-copy{max-width:700px}.eyebrow{display:inline-flex;align-items:center;gap:9px;padding:8px 12px;border:1px solid #77baff55;border-radius:30px;background:#4c9aff18;color:#a9d6ff;font-size:11px;font-weight:850;letter-spacing:1.4px}
-.hero h1{font-size:clamp(43px,6vw,76px);line-height:.99;letter-spacing:-2.7px;margin:25px 0 22px;font-weight:900}.hero h1 span{background:linear-gradient(90deg,#65baff,#8c9dff);-webkit-background-clip:text;background-clip:text;color:transparent}
-.hero p{color:#d4e3ff;font-size:17px;line-height:1.8;max-width:630px;margin:0 0 28px}.hero-actions{display:flex;gap:12px;flex-wrap:wrap}.hero-note{margin-top:25px;color:#a9bddc;font-size:12px;letter-spacing:.3px}
-.hero-visual{position:relative;min-height:390px;display:flex;align-items:center;justify-content:center}
-.visual-glow{position:absolute;width:320px;height:320px;border-radius:50%;background:#277cff66;filter:blur(70px)}
-.visual-panel{position:relative;width:min(100%,440px);padding:24px;border:1px solid #9bcaff55;border-radius:24px;background:linear-gradient(145deg,#ffffff20,#ffffff08);box-shadow:0 35px 90px #020b1f88;backdrop-filter:blur(16px);transform:rotate(2deg)}
-.visual-top{display:flex;align-items:center;justify-content:space-between;color:#cfe5ff;font-size:11px;font-weight:800;letter-spacing:1px}
-.visual-dot{width:8px;height:8px;border-radius:50%;background:#58e0b2;display:inline-block;margin-right:6px;box-shadow:0 0 14px #58e0b2}
-.visual-title{font-size:23px;font-weight:850;margin:28px 0 8px}.visual-sub{font-size:13px;color:#c6d9f6;line-height:1.6}
-.visual-bars{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:25px}
-.visual-bar{height:92px;border-radius:12px;background:linear-gradient(180deg,#64baff55,#347cff15);border:1px solid #9bcaff35;display:flex;align-items:end;padding:10px}
-.visual-bar i{display:block;width:100%;border-radius:5px;background:linear-gradient(90deg,#57b8ff,#6484ff)}
-.visual-bar:nth-child(1) i{height:48%}.visual-bar:nth-child(2) i{height:76%}.visual-bar:nth-child(3) i{height:60%}
-.visual-foot{display:flex;justify-content:space-between;margin-top:18px;padding-top:15px;border-top:1px solid #ffffff22;color:#d6e8ff;font-size:11px}
-.trust-strip{background:#fff;border-bottom:1px solid var(--line)}.trust-inner{max-width:1220px;margin:auto;padding:20px 24px;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;color:#52627d;font-size:12px;font-weight:750;letter-spacing:.6px}
-.section-title{text-align:center;margin:0 0 38px}.section-title .kicker{color:var(--blue);font-size:11px;font-weight:900;letter-spacing:1.7px;text-transform:uppercase}
-.section-title h2{font-size:clamp(28px,4vw,42px);letter-spacing:-1.1px;margin:10px 0;color:var(--navy)}.section-title p{color:var(--muted);margin:0;line-height:1.7}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.card{position:relative;background:white;border:1px solid var(--line);border-radius:18px;padding:25px;box-shadow:0 8px 30px rgba(15,35,70,.045);transition:transform .22s,box-shadow .22s}
-.card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
-.card h3{margin:13px 0 8px;color:var(--navy);font-size:18px}.card p{color:var(--muted);font-size:14px;line-height:1.75;margin:0}
-.service-icon{width:54px;height:54px;display:grid;place-items:center;border-radius:15px;background:linear-gradient(145deg,#e7f1ff,#f5f9ff);font-size:26px}
-.tag{display:inline-block;background:#eaf2ff;color:#2059c7;border-radius:30px;padding:7px 11px;font-size:10px;font-weight:900;letter-spacing:.7px;text-transform:uppercase}
-.company-card,.campaign-card{padding:15px}.company-card img,.campaign-card img{width:100%;height:190px;object-fit:cover;border-radius:13px;background:#eaf0f8}.company-card h3,.campaign-card h3{padding:0 7px}.company-card p,.campaign-card p{padding:0 7px}.company-card .tag,.campaign-card .tag{margin:14px 7px 0}.company-card .btn,.campaign-card .btn{width:calc(100% - 14px);margin:16px 7px 4px}
-.empty{grid-column:1/-1;text-align:center;padding:36px;color:var(--muted);background:white;border:1px dashed #cbd8ea;border-radius:16px}
-.cta{position:relative;overflow:hidden;background:radial-gradient(circle at 90% 20%,#286cff66,transparent 32%),linear-gradient(120deg,#08152d,#102b59);color:white;border-radius:24px;padding:55px 28px;text-align:center;box-shadow:var(--shadow)}
-.cta h2{font-size:clamp(27px,4vw,40px);margin:0 0 12px}.cta p{color:#cbdcf7;line-height:1.7;max-width:650px;margin:0 auto 23px}
-.formbox{background:white;border:1px solid var(--line);border-radius:20px;padding:30px;max-width:760px;margin:28px auto;box-shadow:var(--shadow)}
-.field{margin:14px 0}.field label{display:block;font-size:12px;font-weight:850;margin-bottom:7px;color:#33415c}
-.field input,.field textarea,.field select,.login input,.admin-form input,.admin-form textarea,.admin-form select{width:100%;padding:14px;border:1px solid #d5dfed;border-radius:10px;background:#fbfdff;color:var(--text);outline:none}
-.field input:focus,.field textarea:focus,.field select:focus,.admin-form input:focus,.admin-form textarea:focus,.admin-form select:focus{border-color:#5794ff;box-shadow:0 0 0 3px #5794ff20}
-.field textarea,.admin-form textarea{min-height:105px;resize:vertical}.formbox button{width:100%}
-.status{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.6}
-footer{background:#061126;color:#cbd5e1;text-align:center;padding:42px 15px;margin-top:30px;font-size:13px;line-height:2}footer strong{color:#fff;font-size:17px}footer a{color:#83baff}
-.admin-area{display:none;background:#edf3fc;padding:35px 15px}.admin-wrap{max-width:1100px;margin:auto}.admin-panel{background:white;border:1px solid var(--line);border-radius:17px;padding:24px;margin:15px 0;box-shadow:0 8px 25px #0b23400a}.admin-panel h3{margin-top:0;color:var(--navy)}
-.admin-form{display:grid;grid-template-columns:1fr 1fr;gap:12px}.admin-form .full{grid-column:1/-1}.admin-list{display:grid;gap:9px}
-.admin-item{border:1px solid var(--line);padding:13px;border-radius:11px;display:flex;justify-content:space-between;gap:10px;align-items:center}.admin-item small{display:block;color:var(--muted);margin-top:4px}
-.actions{display:flex;gap:6px;flex-wrap:wrap}.actions button{border:0;padding:9px 11px;border-radius:8px;font-weight:800}.edit{background:#dbeafe;color:#1d4ed8}.del{background:#fee2e2;color:#b91c1c}
-.hidden{display:none!important}.login{max-width:410px;margin:25px auto;background:white;padding:25px;border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow)}.login input{margin:7px 0}
-.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}.tabs button{border:0;background:#e8f0ff;color:#1e40af;padding:11px 15px;border-radius:9px;font-weight:800}.tabs button.active{background:var(--blue);color:white}
-@media(max-width:850px){.hero-inner{grid-template-columns:1fr;gap:35px}.hero-visual{min-height:330px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.navlinks{gap:13px}}
-@media(max-width:600px){.nav{padding:14px 16px;flex-wrap:wrap}.navlinks{width:100%;justify-content:space-between;gap:7px;font-size:11px}.navlinks a.nav-cta{padding:8px}.hero{padding:60px 18px}.hero h1{letter-spacing:-1.5px}.hero-visual{min-height:280px}.visual-panel{transform:none}.container{padding:55px 17px}.grid{grid-template-columns:1fr}.admin-form{grid-template-columns:1fr}.admin-form .full{grid-column:auto}.admin-item{align-items:flex-start;flex-direction:column}.formbox{padding:20px}}
+html{scroll-behavior:smooth;scroll-padding-top:85px}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif}
+a{text-decoration:none;color:inherit}
+button,input,textarea,select{font:inherit}
+button,a{cursor:pointer}
+header{position:sticky;top:0;z-index:50;background:#050b18ed;backdrop-filter:blur(15px);border-bottom:1px solid #ffffff13}
+.nav{max-width:1200px;margin:auto;padding:17px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:20px;font-weight:900;letter-spacing:2px}
+.logo span{color:#338bff}
+.navlinks{display:flex;align-items:center;gap:27px;font-size:12px;color:#cbd5e1}
+.navlinks a:hover{color:#55aaff}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(110deg,#0756ed,#1685ff);border:1px solid #348dff66;border-radius:8px;padding:13px 19px;color:white;font-weight:800;font-size:12px;letter-spacing:.3px;box-shadow:0 0 25px #0865ff35;transition:.2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 30px #0865ff80}
+.btn.secondary{background:transparent;border:1px solid #ffffff38;box-shadow:none}
+.btn.green{background:#119b75;border:0}
+.hero{max-width:1320px;margin:10px auto 0;border:1px solid #1b3153;border-radius:17px;overflow:hidden;position:relative;background:linear-gradient(90deg,#050b18 0%,#07152c 48%,#07152cdd 100%)}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#050b18 0%,#050b18ed 38%,#050b1880 66%,#050b18a8 100%),url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1500&q=85") center right/cover;z-index:0}
+.hero:after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 72% 45%,#076aff35,transparent 40%);pointer-events:none}
+.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr .8fr;min-height:425px;align-items:center;padding:60px 7%;gap:35px}
+.eyebrow{font-size:11px;color:#429cff;letter-spacing:2px;font-weight:900}
+.hero h1{font-size:clamp(42px,6vw,68px);line-height:1.02;letter-spacing:-2px;margin:18px 0;font-weight:850}
+.hero h1 span{color:#1675ff;text-shadow:0 0 30px #0865ff55}
+.hero p{font-size:14px;line-height:1.8;color:#c0cce0;max-width:450px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+.hero-right{display:flex;justify-content:flex-end;align-items:center}
+.hero-card{width:100%;max-width:360px;background:#07152bbd;border:1px solid #4a85c966;border-radius:14px;padding:25px;backdrop-filter:blur(12px);box-shadow:0 20px 60px #0008}
+.hero-card h3{font-size:20px;margin:0 0 12px}
+.hero-card p{font-size:12px;color:#b9cce6}
+.mini-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:22px}
+.mini{padding:13px;background:#0d2140;border:1px solid #214777;border-radius:9px;font-size:11px;color:#d8e8ff}
+.mini strong{display:block;color:#58aaff;font-size:18px;margin-bottom:5px}
+.side-decoration{position:absolute;right:12px;top:28%;display:grid;gap:12px;z-index:2}
+.side-box{background:#07162ccc;border:1px solid #315987;border-radius:12px;padding:15px;text-align:center;width:80px;font-size:10px;color:#cce3ff}
+.side-box b{display:block;font-size:22px;color:#2485ff;margin-top:7px}
+.feature-strip{max-width:1320px;margin:auto;padding:25px 35px;border:1px solid #172c49;border-top:0;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.feature{display:flex;align-items:center;gap:12px}
+.feature-icon{width:42px;height:42px;display:grid;place-items:center;border:1px solid #174d91;border-radius:50%;background:#09234a;color:#55aaff;font-size:20px}
+.feature strong{display:block;font-size:12px}
+.feature small{display:block;font-size:10px;color:#8497b3;margin-top:5px}
+.container{max-width:1200px;margin:auto;padding:75px 25px}
+.section-head{text-align:center;margin-bottom:35px}
+.section-head .eyebrow{font-size:10px}
+.section-head h2{font-size:clamp(27px,4vw,38px);margin:12px 0;color:white}
+.section-head p{font-size:13px;color:#93a5c0;line-height:1.7}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px}
+.card{background:linear-gradient(145deg,#0c1a31,#071326);border:1px solid #1b3558;border-radius:13px;padding:23px;transition:.25s}
+.card:hover{border-color:#348dff;transform:translateY(-4px);box-shadow:0 12px 35px #0006}
+.icon{width:45px;height:45px;border-radius:10px;display:grid;place-items:center;background:#0d2c58;border:1px solid #20569b;font-size:22px}
+.card h3{font-size:16px;margin:15px 0 9px}
+.card p{font-size:12px;color:#96a8c1;line-height:1.8}
+.company-card img,.campaign-card img{width:100%;height:175px;object-fit:cover;border-radius:8px;background:#10213b}
+.tag{display:inline-block;background:#0d2d5c;border:1px solid #1d5597;border-radius:30px;color:#68b7ff;font-size:9px;font-weight:bold;padding:7px 10px;letter-spacing:.7px;margin-top:12px}
+.company-card .btn,.campaign-card .btn{width:100%;margin-top:13px}
+.empty{grid-column:1/-1;text-align:center;padding:30px;border:1px dashed #294365;border-radius:12px;color:#94a8c3;font-size:13px}
+.brand-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:25px}
+.brand{border:1px solid #1a3454;border-radius:9px;padding:17px 8px;text-align:center;color:#8195b2;font-size:11px;font-weight:800;letter-spacing:1px}
+.brand small{display:block;font-size:8px;font-weight:normal;margin-top:6px;letter-spacing:0}
+.portfolio-note{font-size:10px;color:#7185a4;text-align:center;margin-top:15px}
+.dashboard-preview{display:grid;grid-template-columns:1fr 1.2fr;gap:17px}
+.preview-card{background:#08172e;border:1px solid #1c3659;border-radius:13px;padding:24px}
+.preview-card h3{font-size:15px}
+.preview-card p{font-size:11px;line-height:1.7;color:#96a8c1}
+.chart{height:140px;display:flex;align-items:end;gap:9px;border-bottom:1px solid #28466d;padding:10px}
+.chart i{flex:1;display:block;background:linear-gradient(180deg,#1686ff,#0c3671);border-radius:5px 5px 0 0}
+.chart i:nth-child(1){height:24%}.chart i:nth-child(2){height:42%}.chart i:nth-child(3){height:35%}.chart i:nth-child(4){height:62%}.chart i:nth-child(5){height:50%}.chart i:nth-child(6){height:78%}.chart i:nth-child(7){height:91%}
+.chart-label{font-size:9px;color:#6f88aa;margin-top:9px}
+.cta{border:1px solid #1f4b7d;border-radius:15px;padding:45px 25px;text-align:center;background:radial-gradient(ellipse at center,#0e3970,#071326 70%)}
+.cta h2{font-size:30px;margin:0 0 12px}
+.cta p{color:#a9bad1;font-size:13px;line-height:1.7;margin:0 auto 23px;max-width:600px}
+.formbox{max-width:700px;margin:30px auto;padding:28px;background:#09172c;border:1px solid #1d385c;border-radius:13px}
+.field{margin:13px 0}
+.field label{display:block;font-size:11px;font-weight:bold;margin-bottom:7px;color:#d6e3f7}
+.field input,.field textarea,.field select,.login input,.admin-form input,.admin-form textarea,.admin-form select{width:100%;padding:13px;border-radius:7px;border:1px solid #274262;background:#061225;color:white;outline:none}
+.field textarea,.admin-form textarea{min-height:95px;resize:vertical}
+.field input:focus,.field textarea:focus{border-color:#2485ff}
+.formbox button{width:100%}
+.status{font-size:11px;color:#90a4bf;line-height:1.6;margin-top:10px}
+footer{border-top:1px solid #1a2d49;background:#030916;text-align:center;padding:35px 15px;color:#8ea1bd;font-size:11px;line-height:2}
+footer strong{color:white;font-size:16px;letter-spacing:2px}
+footer a{color:#5aa9ff}
+.admin-area{display:none;background:#08152a;padding:35px 15px}
+.admin-wrap{max-width:1100px;margin:auto}
+.admin-panel{background:#0b1b33;border:1px solid #254366;border-radius:12px;padding:22px;margin:15px 0}
+.admin-panel h3{margin-top:0}
+.admin-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.admin-form .full{grid-column:1/-1}
+.admin-list{display:grid;gap:9px}
+.admin-item{border:1px solid #284362;padding:12px;border-radius:8px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.admin-item small{display:block;color:#91a6c1;margin-top:4px}
+.actions{display:flex;gap:6px;flex-wrap:wrap}
+.actions button{border:0;padding:8px 10px;border-radius:6px;font-weight:bold}
+.edit{background:#174b83;color:white}.del{background:#812b39;color:white}
+.hidden{display:none!important}
+.login{max-width:400px;margin:20px auto;background:#09172c;border:1px solid #284362;padding:22px;border-radius:12px}
+.login input{margin:6px 0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+.tabs button{border:1px solid #284d78;background:#0c2b50;color:#b8d9ff;padding:10px 14px;border-radius:7px;font-weight:bold}
+.tabs button.active{background:#1268e8;color:white}
+@media(max-width:800px){
+.hero-inner{grid-template-columns:1fr;padding:50px 7%}
+.hero-right{justify-content:flex-start}
+.side-decoration{display:none}
+.grid{grid-template-columns:repeat(2,1fr)}
+.feature-strip{grid-template-columns:repeat(2,1fr)}
+.dashboard-preview{grid-template-columns:1fr}
+.navlinks{gap:12px}
+}
+@media(max-width:560px){
+.nav{flex-wrap:wrap;padding:14px}
+.navlinks{width:100%;justify-content:space-between;gap:5px;font-size:10px}
+.navlinks .nav-cta{display:none}
+.hero h1{font-size:43px}
+.hero-inner{padding:45px 22px}
+.grid{grid-template-columns:1fr}
+.feature-strip{grid-template-columns:1fr 1fr;padding:20px 15px}
+.brand-row{grid-template-columns:repeat(2,1fr)}
+.admin-form{grid-template-columns:1fr}
+.admin-form .full{grid-column:auto}
+.admin-item{align-items:flex-start;flex-direction:column}
+.container{padding:55px 17px}
+.cta h2{font-size:25px}
+}
 </style>
 </head>
 <body>
+
 <header>
- <nav class="nav">
-  <a class="logo" href="#">GE <span>MARKETING DIGITAL</span></a>
-  <div class="navlinks">
-   <a href="#servicos">Serviços</a>
-   <a href="#empresas">Empresas</a>
-   <a href="#campanhas">Campanhas</a>
-   <a href="#contato">Contato</a>
-   <a class="nav-cta" href="#contato">ANUNCIE SUA MARCA</a>
-  </div>
- </nav>
+<nav class="nav">
+<a class="logo" href="#">GE <span>MARKETING DIGITAL</span></a>
+<div class="navlinks">
+<a href="#servicos">Serviços</a>
+<a href="#empresas">Marcas</a>
+<a href="#campanhas">Campanhas</a>
+<a href="#contato">Contato</a>
+<a href="#contato" class="btn nav-cta">FALE CONOSCO →</a>
+</div>
+</nav>
 </header>
 
+<main>
 <section class="hero">
- <div class="hero-inner">
-  <div class="hero-copy">
-   <span class="eyebrow">✦ ESTRATÉGIA • CRIATIVIDADE • RESULTADOS</span>
-   <h1>Sua marca merece <span>mais destaque.</span></h1>
-   <p>Transformamos boas ideias em comunicação que aproxima marcas e pessoas. Campanhas digitais, vídeos UGC e divulgação de produtos e serviços em um só lugar.</p>
-   <div class="hero-actions">
-    <a class="btn" href="#contato">QUERO DIVULGAR MINHA EMPRESA ↗</a>
-    <a class="btn light" href="#servicos">CONHECER SERVIÇOS</a>
-   </div>
-   <div class="hero-note">ATENDIMENTO PARA EMPRESAS • LOJAS • MARCAS • NEGÓCIOS LOCAIS</div>
-  </div>
-  <div class="hero-visual" aria-label="Painel ilustrativo de marketing digital">
-   <div class="visual-glow"></div>
-   <div class="visual-panel">
-    <div class="visual-top"><span>GE / CREATIVE STUDIO</span><span><i class="visual-dot"></i> PRONTO PARA CRIAR</span></div>
-    <div class="visual-title">Ideias que conectam.<br>Marcas que aparecem.</div>
-    <div class="visual-sub">Estratégia de divulgação, conteúdo visual e campanhas pensadas para apresentar sua marca ao público.</div>
-    <div class="visual-bars"><div class="visual-bar"><i></i></div><div class="visual-bar"><i></i></div><div class="visual-bar"><i></i></div></div>
-    <div class="visual-foot"><span>PUBLICIDADE DIGITAL</span><span>CONTEÚDO + CONEXÃO</span></div>
-   </div>
-  </div>
- </div>
+<div class="hero-inner">
+<div>
+<div class="eyebrow">MARKETING INTELIGENTE • PUBLICIDADE DIGITAL</div>
+<h1>Estratégia.<br>Tecnologia.<br><span>Crescimento.</span></h1>
+<p>Ajudamos empresas a conquistar visibilidade através de estratégias de divulgação, campanhas digitais e conteúdos que aproximam marcas e consumidores.</p>
+<div class="hero-actions">
+<a class="btn" href="#contato">SOLICITE UMA PROPOSTA →</a>
+<a class="btn secondary" href="#servicos">CONHEÇA A GE</a>
+</div>
+</div>
+<div class="hero-right">
+<div class="hero-card">
+<div class="eyebrow">GE MARKETING DIGITAL</div>
+<h3>Sua marca no centro das oportunidades.</h3>
+<p>Publicidade, criatividade e conexão comercial para apresentar seus produtos e serviços ao público.</p>
+<div class="mini-grid">
+<div class="mini"><strong>01</strong>Estratégia digital</div>
+<div class="mini"><strong>02</strong>Conteúdo criativo</div>
+<div class="mini"><strong>03</strong>Divulgação de marcas</div>
+<div class="mini"><strong>04</strong>Parcerias comerciais</div>
+</div>
+</div>
+</div>
+</div>
+<div class="side-decoration">
+<div class="side-box">DADOS<br>PROTEGIDOS<b>♙</b></div>
+<div class="side-box">MARCA<br>EM FOCO<b>✦</b></div>
+</div>
 </section>
 
-<div class="trust-strip"><div class="trust-inner"><span>✦ CAMPANHAS DIGITAIS</span><span>✦ VÍDEOS UGC</span><span>✦ MARKETING DE AFILIADOS</span><span>✦ PARCERIAS COMERCIAIS</span></div></div>
+<section class="feature-strip">
+<div class="feature"><div class="feature-icon">✧</div><div><strong>Estratégia inteligente</strong><small>Planejamento de divulgação</small></div></div>
+<div class="feature"><div class="feature-icon">◈</div><div><strong>Conteúdo criativo</strong><small>Comunicação visual</small></div></div>
+<div class="feature"><div class="feature-icon">◇</div><div><strong>Transparência</strong><small>Campanhas identificadas</small></div></div>
+<div class="feature"><div class="feature-icon">⬡</div><div><strong>Parcerias</strong><small>Conexões comerciais</small></div></div>
+</section>
 
 <section class="container" id="servicos">
- <div class="section-title">
-  <span class="kicker">O QUE FAZEMOS</span><h2>Marketing com intenção e criatividade</h2>
-  <p>Soluções para divulgar sua empresa e fortalecer sua marca.</p>
- </div>
- <div class="grid">
-  <article class="card"><div class="service-icon">📢</div><h3>Publicidade digital</h3><p>Campanhas de divulgação para apresentar sua empresa a novos públicos.</p></article>
-  <article class="card"><div class="service-icon">🎬</div><h3>Vídeos UGC</h3><p>Vídeos demonstrativos e conteúdos com linguagem natural para apresentar produtos.</p></article>
-  <article class="card"><div class="service-icon">🛍️</div><h3>Marketing de afiliados</h3><p>Divulgação de produtos por links rastreáveis e comissões por vendas válidas.</p></article>
-  <article class="card"><div class="service-icon">🏢</div><h3>Divulgação de empresas</h3><p>Apresentação de lojas, marcas, prestadores de serviços e negócios locais.</p></article>
-  <article class="card"><div class="service-icon">📱</div><h3>Conteúdo para redes</h3><p>Criação de materiais promocionais para redes sociais e canais digitais.</p></article>
-  <article class="card"><div class="service-icon">🤝</div><h3>Parcerias comerciais</h3><p>Conexão com marcas interessadas em campanhas e divulgação de seus produtos.</p></article>
- </div>
+<div class="section-head">
+<div class="eyebrow">SOLUÇÕES GE</div>
+<h2>Marketing que aproxima marcas e pessoas</h2>
+<p>Uma estrutura de divulgação para empresas que desejam fortalecer sua presença digital.</p>
+</div>
+<div class="grid">
+<article class="card"><div class="icon">📢</div><h3>Publicidade digital</h3><p>Campanhas para apresentar sua empresa, produtos e serviços a novos públicos.</p></article>
+<article class="card"><div class="icon">🎬</div><h3>Vídeos UGC</h3><p>Conteúdos demonstrativos e vídeos promocionais com linguagem próxima do consumidor.</p></article>
+<article class="card"><div class="icon">🛍️</div><h3>Marketing de afiliados</h3><p>Divulgação de produtos com links rastreáveis e comissões por vendas elegíveis.</p></article>
+<article class="card"><div class="icon">🏢</div><h3>Divulgação de empresas</h3><p>Apresentação de negócios, lojas, marcas e prestadores de serviços.</p></article>
+<article class="card"><div class="icon">📱</div><h3>Conteúdo para redes</h3><p>Materiais promocionais para ampliar a presença da sua marca nos canais digitais.</p></article>
+<article class="card"><div class="icon">🤝</div><h3>Parcerias comerciais</h3><p>Oportunidades de colaboração entre empresas, criadores e marcas.</p></article>
+</div>
 </section>
 
 <section class="container" id="empresas">
- <div class="section-title"><span class="kicker">NOSSO ECOSSISTEMA</span><h2>Empresas e marcas</h2><p>Conheça empresas parceiras e anunciantes.</p></div>
- <div class="grid" id="companiesList"><div class="empty">Carregando empresas...</div></div>
+<div class="section-head">
+<div class="eyebrow">REDE DE MARCAS</div>
+<h2>Empresas e marcas em destaque</h2>
+<p>Um espaço para apresentar empresas, parceiros e anunciantes da GE.</p>
+</div>
+<div class="grid" id="companiesList"><div class="empty">Carregando empresas...</div></div>
+<div class="brand-row">
+<div class="brand">TECNOLOGIA<small>ESPAÇO PARA MARCAS</small></div>
+<div class="brand">MODA<small>ESPAÇO PARA MARCAS</small></div>
+<div class="brand">AUTOMOTIVO<small>ESPAÇO PARA MARCAS</small></div>
+<div class="brand">BELEZA<small>ESPAÇO PARA MARCAS</small></div>
+<div class="brand">SERVIÇOS<small>ESPAÇO PARA MARCAS</small></div>
+</div>
+<p class="portfolio-note">Categorias ilustrativas. Não representam parcerias comerciais já confirmadas.</p>
 </section>
 
 <section class="container" id="campanhas">
- <div class="section-title"><span class="kicker">PORTFÓLIO EM MOVIMENTO</span><h2>Campanhas em destaque</h2><p>Produtos, serviços e conteúdos divulgados pela GE.</p></div>
- <div class="grid" id="campaignsList"><div class="empty">Carregando campanhas...</div></div>
+<div class="section-head">
+<div class="eyebrow">PORTFÓLIO DE PUBLICIDADE</div>
+<h2>Campanhas e conteúdos</h2>
+<p>Conheça as campanhas e divulgações publicadas pela nossa equipe.</p>
+</div>
+<div class="grid" id="campaignsList"><div class="empty">Carregando campanhas...</div></div>
 </section>
 
 <section class="container">
- <div class="cta">
-  <h2>Quer colocar sua marca em destaque?</h2>
-  <p>Apresente sua empresa para a GE MARKETING DIGITAL e solicite uma proposta de divulgação.</p>
-  <a class="btn light" href="#contato">SOLICITAR UMA PROPOSTA</a>
- </div>
+<div class="section-head">
+<div class="eyebrow">GESTÃO E ACOMPANHAMENTO</div>
+<h2>Comunicação com transparência</h2>
+<p>Organização das campanhas e acompanhamento das atividades de divulgação.</p>
+</div>
+<div class="dashboard-preview">
+<div class="preview-card">
+<div class="eyebrow">NOSSO COMPROMISSO</div>
+<h3>Uma parceria construída com clareza.</h3>
+<p>Cada projeto possui seu escopo, formato de divulgação e condições comerciais. Os resultados são apresentados conforme os dados efetivamente disponíveis.</p>
+<a class="btn" href="#contato">CONVERSE COM A GE →</a>
+</div>
+<div class="preview-card">
+<h3>Painel ilustrativo de acompanhamento</h3>
+<p>Exemplo visual de organização de campanhas. Não representa métricas ou resultados reais.</p>
+<div class="chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+<div class="chart-label">VISUALIZAÇÃO ILUSTRATIVA • SEM DADOS REAIS</div>
+</div>
+</div>
+</section>
+
+<section class="container">
+<div class="cta">
+<div class="eyebrow">SUA MARCA PODE ESTAR AQUI</div>
+<h2>Vamos construir sua próxima campanha?</h2>
+<p>Apresente sua empresa, conte o que deseja divulgar e solicite uma proposta comercial da GE MARKETING DIGITAL.</p>
+<a class="btn" href="#contato">QUERO ANUNCIAR MINHA MARCA →</a>
+</div>
 </section>
 
 <section class="container" id="contato">
- <div class="section-title"><span class="kicker">FALE COM A GE</span><h2>Vamos dar visibilidade à sua marca</h2><p>Preencha os dados e nossa equipe poderá entrar em contato.</p></div>
- <form class="formbox" id="leadForm">
-  <div class="field"><label>Nome *</label><input id="leadName" required maxlength="100" placeholder="Seu nome"></div>
-  <div class="field"><label>Empresa ou marca *</label><input id="leadCompany" required maxlength="150" placeholder="Nome da empresa"></div>
-  <div class="field"><label>WhatsApp *</label><input id="leadPhone" required maxlength="30" placeholder="(11) 99999-9999"></div>
-  <div class="field"><label>E-mail</label><input id="leadEmail" type="email" maxlength="150" placeholder="seuemail@empresa.com"></div>
-  <div class="field"><label>Qual serviço procura?</label>
-   <select id="leadService">
-    <option>Publicidade digital</option><option>Vídeos UGC</option>
-    <option>Marketing de afiliados</option><option>Divulgação de empresa</option>
-    <option>Parceria comercial</option><option>Outro</option>
-   </select>
-  </div>
-  <div class="field"><label>Conte um pouco sobre sua necessidade</label><textarea id="leadMessage" maxlength="1500" placeholder="Descreva sua empresa e o que deseja divulgar"></textarea></div>
-  <button class="btn" id="leadSubmit">ENVIAR SOLICITAÇÃO</button>
-  <p class="status" id="leadStatus">Seus dados serão utilizados para responder à sua solicitação.</p>
- </form>
+<div class="section-head">
+<div class="eyebrow">CONTATO COMERCIAL</div>
+<h2>Fale com a GE MARKETING DIGITAL</h2>
+<p>Conte um pouco sobre sua empresa e sua necessidade de divulgação.</p>
+</div>
+<form class="formbox" id="leadForm">
+<div class="field"><label>Seu nome *</label><input id="leadName" required maxlength="100" placeholder="Nome completo"></div>
+<div class="field"><label>Empresa ou marca *</label><input id="leadCompany" required maxlength="150" placeholder="Nome da empresa"></div>
+<div class="field"><label>WhatsApp *</label><input id="leadPhone" required maxlength="30" placeholder="(11) 99999-9999"></div>
+<div class="field"><label>E-mail</label><input id="leadEmail" type="email" maxlength="150" placeholder="seuemail@empresa.com"></div>
+<div class="field"><label>Serviço de interesse</label>
+<select id="leadService">
+<option>Publicidade digital</option><option>Vídeos UGC</option>
+<option>Marketing de afiliados</option><option>Divulgação de empresa</option>
+<option>Parceria comercial</option><option>Outro</option>
+</select>
+</div>
+<div class="field"><label>Mensagem</label><textarea id="leadMessage" maxlength="1500" placeholder="Como podemos ajudar sua empresa?"></textarea></div>
+<button class="btn" id="leadSubmit">ENVIAR SOLICITAÇÃO →</button>
+<p class="status" id="leadStatus">Seus dados serão utilizados para responder à sua solicitação comercial.</p>
+</form>
+<div style="text-align:center"><a class="btn green" id="whatsappButton" href="#contato" target="_blank" rel="noopener">FALAR PELO WHATSAPP</a></div>
 </section>
-
-<section class="container" style="text-align:center">
- <a class="btn green" id="whatsappButton" href="#" target="_blank" rel="noopener">FALAR PELO WHATSAPP</a>
- <p class="status">Atendimento comercial GE MARKETING DIGITAL.</p>
-</section>
+</main>
 
 <section class="admin-area" id="adminArea">
- <div class="admin-wrap">
-  <div class="admin-panel">
-   <h2>⚙️ Painel administrativo — GE</h2>
-   <p>Gerencie empresas, campanhas e solicitações comerciais.</p>
-   <button class="btn gray" onclick="logout()">SAIR DO PAINEL</button>
-   <div class="tabs">
-    <button class="active" onclick="showTab('companies',this)">Empresas</button>
-    <button onclick="showTab('campaigns',this)">Campanhas</button>
-    <button onclick="showTab('leads',this)">Solicitações</button>
-   </div>
-  </div>
-
-  <div class="admin-panel admin-tab" id="tab-companies">
-   <h3>Cadastro de empresa</h3>
-   <form class="admin-form" id="companyForm">
-    <input id="companyId" type="hidden">
-    <div><label>Nome da empresa</label><input id="companyName" required maxlength="150"></div>
-    <div><label>Categoria</label><input id="companyCategory" maxlength="100" placeholder="Tecnologia, moda, serviços..."></div>
-    <div class="full"><label>Descrição</label><textarea id="companyDescription" maxlength="1000"></textarea></div>
-    <div><label>Logo ou imagem (URL)</label><input id="companyImage" type="url"></div>
-    <div><label>Site ou contato (URL)</label><input id="companyLink" type="url"></div>
-    <div><label>WhatsApp (opcional)</label><input id="companyWhatsapp" maxlength="30"></div>
-    <div><label>Visibilidade</label><select id="companyPublished"><option value="true">Publicado</option><option value="false">Rascunho</option></select></div>
-    <button class="btn full" type="submit">SALVAR EMPRESA</button>
-    <button class="btn gray full" type="button" onclick="resetCompany()">LIMPAR</button>
-   </form>
-   <h3>Empresas cadastradas</h3><div class="admin-list" id="adminCompanies"></div>
-  </div>
-
-  <div class="admin-panel admin-tab hidden" id="tab-campaigns">
-   <h3>Cadastro de campanha</h3>
-   <form class="admin-form" id="campaignForm">
-    <input id="campaignId" type="hidden">
-    <div><label>Título</label><input id="campaignTitle" required maxlength="150"></div>
-    <div><label>Tipo</label><select id="campaignType"><option>Publicidade</option><option>UGC</option><option>Afiliado</option><option>Oferta</option></select></div>
-    <div class="full"><label>Descrição</label><textarea id="campaignDescription" maxlength="1200"></textarea></div>
-    <div><label>Imagem (URL)</label><input id="campaignImage" type="url"></div>
-    <div><label>Link de destino</label><input id="campaignLink" type="url"></div>
-    <div><label>Empresa relacionada</label><select id="campaignCompany"><option value="">Sem empresa vinculada</option></select></div>
-    <div><label>Visibilidade</label><select id="campaignPublished"><option value="true">Publicado</option><option value="false">Rascunho</option></select></div>
-    <button class="btn full" type="submit">SALVAR CAMPANHA</button>
-    <button class="btn gray full" type="button" onclick="resetCampaign()">LIMPAR</button>
-   </form>
-   <h3>Campanhas cadastradas</h3><div class="admin-list" id="adminCampaigns"></div>
-  </div>
-
-  <div class="admin-panel admin-tab hidden" id="tab-leads">
-   <h3>Solicitações recebidas</h3><div class="admin-list" id="adminLeads"></div>
-  </div>
- </div>
+<div class="admin-wrap">
+<div class="admin-panel">
+<h2>GE | Painel administrativo</h2>
+<p>Gerencie empresas, campanhas e solicitações comerciais.</p>
+<button class="btn" onclick="logout()">SAIR DO PAINEL</button>
+<div class="tabs">
+<button class="active" onclick="showTab('companies',this)">Empresas</button>
+<button onclick="showTab('campaigns',this)">Campanhas</button>
+<button onclick="showTab('leads',this)">Solicitações</button>
+</div>
+</div>
+<div class="admin-panel admin-tab" id="tab-companies">
+<h3>Cadastro de empresa</h3>
+<form class="admin-form" id="companyForm">
+<input id="companyId" type="hidden">
+<div><label>Nome</label><input id="companyName" required maxlength="150"></div>
+<div><label>Categoria</label><input id="companyCategory" maxlength="100"></div>
+<div class="full"><label>Descrição</label><textarea id="companyDescription" maxlength="1000"></textarea></div>
+<div><label>Imagem (URL)</label><input id="companyImage" type="url"></div>
+<div><label>Site (URL)</label><input id="companyLink" type="url"></div>
+<div><label>WhatsApp</label><input id="companyWhatsapp" maxlength="30"></div>
+<div><label>Visibilidade</label><select id="companyPublished"><option value="true">Publicado</option><option value="false">Rascunho</option></select></div>
+<button class="btn full" type="submit">SALVAR EMPRESA</button>
+<button class="btn secondary full" type="button" onclick="resetCompany()">LIMPAR</button>
+</form>
+<h3>Empresas cadastradas</h3><div class="admin-list" id="adminCompanies"></div>
+</div>
+<div class="admin-panel admin-tab hidden" id="tab-campaigns">
+<h3>Cadastro de campanha</h3>
+<form class="admin-form" id="campaignForm">
+<input id="campaignId" type="hidden">
+<div><label>Título</label><input id="campaignTitle" required maxlength="150"></div>
+<div><label>Tipo</label><select id="campaignType"><option>Publicidade</option><option>UGC</option><option>Afiliado</option><option>Oferta</option></select></div>
+<div class="full"><label>Descrição</label><textarea id="campaignDescription" maxlength="1200"></textarea></div>
+<div><label>Imagem (URL)</label><input id="campaignImage" type="url"></div>
+<div><label>Link de destino</label><input id="campaignLink" type="url"></div>
+<div><label>Empresa relacionada</label><select id="campaignCompany"><option value="">Sem empresa vinculada</option></select></div>
+<div><label>Visibilidade</label><select id="campaignPublished"><option value="true">Publicado</option><option value="false">Rascunho</option></select></div>
+<button class="btn full" type="submit">SALVAR CAMPANHA</button>
+<button class="btn secondary full" type="button" onclick="resetCampaign()">LIMPAR</button>
+</form>
+<h3>Campanhas cadastradas</h3><div class="admin-list" id="adminCampaigns"></div>
+</div>
+<div class="admin-panel admin-tab hidden" id="tab-leads">
+<h3>Solicitações recebidas</h3><div class="admin-list" id="adminLeads"></div>
+</div>
+</div>
 </section>
 
 <div class="login hidden" id="loginBox">
- <h3>🔐 Acesso administrativo</h3>
- <input id="adminEmail" type="email" placeholder="E-mail cadastrado no Supabase">
- <input id="adminPassword" type="password" placeholder="Senha">
- <button class="btn" style="width:100%" onclick="login()">ENTRAR</button>
- <p class="status" id="loginStatus"></p>
+<h3>🔐 Acesso administrativo GE</h3>
+<input id="adminEmail" type="email" placeholder="E-mail">
+<input id="adminPassword" type="password" placeholder="Senha">
+<button class="btn" style="width:100%" onclick="login()">ENTRAR</button>
+<p class="status" id="loginStatus"></p>
 </div>
 
 <footer>
- <strong>GE MARKETING DIGITAL</strong><br>
- Sua marca merece ser vista.<br>
- © <span id="year"></span> GE MARKETING DIGITAL. Todos os direitos reservados.<br><br>
- <a href="#" onclick="toggleLogin();return false">Acesso administrativo</a>
+<strong>GE MARKETING DIGITAL</strong><br>
+ESTRATÉGIA • TECNOLOGIA • CRESCIMENTO<br>
+Sua marca merece ser vista.<br>
+© <span id="year"></span> GE MARKETING DIGITAL. Todos os direitos reservados.<br><br>
+<a href="#" onclick="toggleLogin();return false">ACESSO ADMINISTRATIVO</a>
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const SUPABASE_URL="https://eefhhutbowjwnxfsecjd.supabase.co";
 const SUPABASE_KEY="sb_publishable_SdRT7jPMqT_ZgQvVNcyazg_vKFjKY_a";
-const WHATSAPP_NUMBER=""; // Coloque seu número com DDI e DDD, somente números.
+const WHATSAPP_NUMBER="";
 
 const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 let isAdmin=false,companies=[],campaigns=[];
-
 const $=id=>document.getElementById(id);
-const esc=value=>String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
-const validUrl=value=>{try{const u=new URL(value);return ["http:","https:"].includes(u.protocol)?u.href:""}catch{return ""}};
+const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const validUrl=v=>{try{let u=new URL(v);return ["http:","https:"].includes(u.protocol)?u.href:""}catch{return ""}};
 $("year").textContent=new Date().getFullYear();
+
 $("whatsappButton").href=WHATSAPP_NUMBER
- ? "https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent("Olá! Quero conhecer os serviços da GE MARKETING DIGITAL.")
- : "#contato";
+?"https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent("Olá! Quero conhecer os serviços da GE MARKETING DIGITAL.")
+:"#contato";
 
 function imageOrPlaceholder(url){
- const safe=validUrl(url);
- return safe||"https://placehold.co/600x400/eaf0f8/1e3a8a?text=GE+Marketing";
+return validUrl(url)||"https://placehold.co/600x400/09172c/55aaff?text=GE+MARKETING";
 }
 
 async function loadPublic(){
- const [c,p]=await Promise.all([
-  db.from("ge_companies").select("*").eq("published",true).order("created_at",{ascending:false}),
-  db.from("ge_campaigns").select("*,ge_companies(name)").eq("published",true).order("created_at",{ascending:false})
- ]);
- companies=c.data||[];campaigns=p.data||[];
- $("companiesList").innerHTML=companies.length?companies.map(x=>`
-  <article class="card company-card">
-   <img src="${esc(imageOrPlaceholder(x.image_url))}" alt="${esc(x.name)}" loading="lazy">
-   <span class="tag">${esc(x.category||"Empresa parceira")}</span>
-   <h3>${esc(x.name)}</h3><p>${esc(x.description||"Conheça esta empresa.")}</p>
-   ${validUrl(x.link)?`<a class="btn" href="${esc(validUrl(x.link))}" target="_blank" rel="noopener">CONHECER EMPRESA</a>`:""}
-  </article>`).join(""):'<div class="empty">Em breve, novas empresas e marcas serão apresentadas aqui.</div>';
+const [c,p]=await Promise.all([
+db.from("ge_companies").select("*").eq("published",true).order("created_at",{ascending:false}),
+db.from("ge_campaigns").select("*,ge_companies(name)").eq("published",true).order("created_at",{ascending:false})
+]);
+companies=c.data||[];campaigns=p.data||[];
+$("companiesList").innerHTML=companies.length?companies.map(x=>`
+<article class="card company-card">
+<img src="${esc(imageOrPlaceholder(x.image_url))}" alt="${esc(x.name)}" loading="lazy">
+<span class="tag">${esc(x.category||"Empresa parceira")}</span>
+<h3>${esc(x.name)}</h3><p>${esc(x.description||"Conheça esta empresa.")}</p>
+${validUrl(x.link)?`<a class="btn" href="${esc(validUrl(x.link))}" target="_blank" rel="noopener">CONHECER EMPRESA →</a>`:""}
+</article>`).join(""):'<div class="empty">Em breve, novas empresas e marcas serão apresentadas aqui.</div>';
 
- $("campaignsList").innerHTML=campaigns.length?campaigns.map(x=>`
-  <article class="card campaign-card">
-   <img src="${esc(imageOrPlaceholder(x.image_url))}" alt="${esc(x.title)}" loading="lazy">
-   <span class="tag">${esc(x.type||"Campanha")}</span>
-   <h3>${esc(x.title)}</h3><p>${esc(x.description||"Confira esta campanha.")}</p>
-   ${x.ge_companies?.name?`<small>${esc(x.ge_companies.name)}</small>`:""}
-   ${validUrl(x.link)?`<a class="btn" href="${esc(validUrl(x.link))}" target="_blank" rel="noopener">SAIBA MAIS</a>`:""}
-  </article>`).join(""):'<div class="empty">Nenhuma campanha publicada no momento.</div>';
+$("campaignsList").innerHTML=campaigns.length?campaigns.map(x=>`
+<article class="card campaign-card">
+<img src="${esc(imageOrPlaceholder(x.image_url))}" alt="${esc(x.title)}" loading="lazy">
+<span class="tag">${esc(x.type||"Campanha")}</span>
+<h3>${esc(x.title)}</h3><p>${esc(x.description||"Confira esta campanha.")}</p>
+${x.ge_companies?.name?`<p>${esc(x.ge_companies.name)}</p>`:""}
+${validUrl(x.link)?`<a class="btn" href="${esc(validUrl(x.link))}" target="_blank" rel="noopener">SAIBA MAIS →</a>`:""}
+</article>`).join(""):'<div class="empty">Nenhuma campanha publicada no momento.</div>';
 }
 
 $("leadForm").addEventListener("submit",async e=>{
- e.preventDefault();
- const button=$("leadSubmit"),status=$("leadStatus");
- button.disabled=true;button.textContent="ENVIANDO...";
- const record={
-  name:$("leadName").value.trim(),
-  company:$("leadCompany").value.trim(),
-  phone:$("leadPhone").value.trim(),
-  email:$("leadEmail").value.trim()||null,
-  service:$("leadService").value,
-  message:$("leadMessage").value.trim(),
-  status:"Novo"
- };
- const {error}=await db.from("ge_leads").insert(record);
- button.disabled=false;button.textContent="ENVIAR SOLICITAÇÃO";
- if(error){status.textContent="Não foi possível enviar. Tente novamente ou fale pelo WhatsApp.";console.error(error);return}
- $("leadForm").reset();status.textContent="Solicitação enviada! Obrigado pelo contato.";
+e.preventDefault();
+const button=$("leadSubmit"),status=$("leadStatus");
+button.disabled=true;button.textContent="ENVIANDO...";
+const record={
+name:$("leadName").value.trim(),
+company:$("leadCompany").value.trim(),
+phone:$("leadPhone").value.trim(),
+email:$("leadEmail").value.trim()||null,
+service:$("leadService").value,
+message:$("leadMessage").value.trim(),
+status:"Novo"
+};
+const {error}=await db.from("ge_leads").insert(record);
+button.disabled=false;button.textContent="ENVIAR SOLICITAÇÃO →";
+if(error){status.textContent="Não foi possível enviar. Tente novamente ou fale pelo WhatsApp.";console.error(error);return}
+$("leadForm").reset();status.textContent="Solicitação enviada! Obrigado pelo contato.";
 });
 
 function toggleLogin(){
- $("loginBox").classList.toggle("hidden");
- $("loginBox").scrollIntoView({behavior:"smooth",block:"center"});
+$("loginBox").classList.toggle("hidden");
+$("loginBox").scrollIntoView({behavior:"smooth",block:"center"});
 }
 async function login(){
- $("loginStatus").textContent="Verificando acesso...";
- const {error}=await db.auth.signInWithPassword({
-  email:$("adminEmail").value.trim(),password:$("adminPassword").value
- });
- if(error){$("loginStatus").textContent="Falha no login: "+error.message;return}
- $("loginStatus").textContent="Login realizado.";
+$("loginStatus").textContent="Verificando acesso...";
+const {error}=await db.auth.signInWithPassword({
+email:$("adminEmail").value.trim(),password:$("adminPassword").value
+});
+if(error){$("loginStatus").textContent="Falha no login: "+error.message;return}
+$("loginStatus").textContent="Login realizado.";
 }
 async function logout(){await db.auth.signOut()}
 function setAdmin(value){
- isAdmin=value;
- $("adminArea").style.display=value?"block":"none";
- $("loginBox").classList.add("hidden");
- if(value)loadAdmin();
+isAdmin=value;
+$("adminArea").style.display=value?"block":"none";
+$("loginBox").classList.add("hidden");
+if(value)loadAdmin();
 }
 db.auth.onAuthStateChange((_event,session)=>setAdmin(!!session));
 
 function showTab(name,button){
- document.querySelectorAll(".admin-tab").forEach(x=>x.classList.add("hidden"));
- $("tab-"+name).classList.remove("hidden");
- document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));
- button.classList.add("active");
+document.querySelectorAll(".admin-tab").forEach(x=>x.classList.add("hidden"));
+$("tab-"+name).classList.remove("hidden");
+document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));
+button.classList.add("active");
 }
 function resetCompany(){$("companyForm").reset();$("companyId").value=""}
 function resetCampaign(){$("campaignForm").reset();$("campaignId").value=""}
 
 async function loadAdmin(){
- if(!isAdmin)return;
- const [c,p,l]=await Promise.all([
-  db.from("ge_companies").select("*").order("created_at",{ascending:false}),
-  db.from("ge_campaigns").select("*").order("created_at",{ascending:false}),
-  db.from("ge_leads").select("*").order("created_at",{ascending:false})
- ]);
- if(c.error||p.error||l.error){
-  alert("Erro ao carregar painel. Verifique as tabelas e permissões no Supabase.");
-  console.error(c.error,p.error,l.error);return;
- }
- companies=c.data||[];campaigns=p.data||[];
- $("campaignCompany").innerHTML='<option value="">Sem empresa vinculada</option>'+
-  companies.map(x=>`<option value="${esc(x.id)}">${esc(x.name)}</option>`).join("");
- $("adminCompanies").innerHTML=companies.map(x=>`
-  <div class="admin-item"><div><strong>${esc(x.name)}</strong><small>${esc(x.category||"")} • ${x.published?"Publicado":"Rascunho"}</small></div>
-  <div class="actions"><button class="edit" onclick="editCompany('${x.id}')">EDITAR</button><button class="del" onclick="deleteRecord('ge_companies','${x.id}')">EXCLUIR</button></div></div>`).join("")||"Nenhuma empresa cadastrada.";
- $("adminCampaigns").innerHTML=campaigns.map(x=>`
-  <div class="admin-item"><div><strong>${esc(x.title)}</strong><small>${esc(x.type)} • ${x.published?"Publicado":"Rascunho"}</small></div>
-  <div class="actions"><button class="edit" onclick="editCampaign('${x.id}')">EDITAR</button><button class="del" onclick="deleteRecord('ge_campaigns','${x.id}')">EXCLUIR</button></div></div>`).join("")||"Nenhuma campanha cadastrada.";
- $("adminLeads").innerHTML=(l.data||[]).map(x=>`
-  <div class="admin-item"><div><strong>${esc(x.name)} — ${esc(x.company)}</strong>
-  <small>${esc(x.phone)} • ${esc(x.email||"Sem e-mail")} • ${esc(x.service)}</small>
-  <small>${esc(x.message||"Sem mensagem")} • Status: ${esc(x.status)}</small></div>
-  <div class="actions"><button class="edit" onclick="updateLead('${x.id}','Em atendimento')">EM ATENDIMENTO</button><button class="del" onclick="deleteRecord('ge_leads','${x.id}')">EXCLUIR</button></div></div>`).join("")||"Nenhuma solicitação recebida.";
+if(!isAdmin)return;
+const [c,p,l]=await Promise.all([
+db.from("ge_companies").select("*").order("created_at",{ascending:false}),
+db.from("ge_campaigns").select("*").order("created_at",{ascending:false}),
+db.from("ge_leads").select("*").order("created_at",{ascending:false})
+]);
+if(c.error||p.error||l.error){alert("Erro ao carregar painel. Verifique as tabelas e permissões no Supabase.");console.error(c.error,p.error,l.error);return}
+companies=c.data||[];campaigns=p.data||[];
+$("campaignCompany").innerHTML='<option value="">Sem empresa vinculada</option>'+companies.map(x=>`<option value="${esc(x.id)}">${esc(x.name)}</option>`).join("");
+$("adminCompanies").innerHTML=companies.map(x=>`
+<div class="admin-item"><div><strong>${esc(x.name)}</strong><small>${esc(x.category||"")} • ${x.published?"Publicado":"Rascunho"}</small></div>
+<div class="actions"><button class="edit" onclick="editCompany('${x.id}')">EDITAR</button><button class="del" onclick="deleteRecord('ge_companies','${x.id}')">EXCLUIR</button></div></div>`).join("")||"Nenhuma empresa cadastrada.";
+$("adminCampaigns").innerHTML=campaigns.map(x=>`
+<div class="admin-item"><div><strong>${esc(x.title)}</strong><small>${esc(x.type)} • ${x.published?"Publicado":"Rascunho"}</small></div>
+<div class="actions"><button class="edit" onclick="editCampaign('${x.id}')">EDITAR</button><button class="del" onclick="deleteRecord('ge_campaigns','${x.id}')">EXCLUIR</button></div></div>`).join("")||"Nenhuma campanha cadastrada.";
+$("adminLeads").innerHTML=(l.data||[]).map(x=>`
+<div class="admin-item"><div><strong>${esc(x.name)} — ${esc(x.company)}</strong>
+<small>${esc(x.phone)} • ${esc(x.email||"Sem e-mail")} • ${esc(x.service)}</small>
+<small>${esc(x.message||"Sem mensagem")} • Status: ${esc(x.status)}</small></div>
+<div class="actions"><button class="edit" onclick="updateLead('${x.id}','Em atendimento')">EM ATENDIMENTO</button><button class="del" onclick="deleteRecord('ge_leads','${x.id}')">EXCLUIR</button></div></div>`).join("")||"Nenhuma solicitação recebida.";
 }
 
 $("companyForm").addEventListener("submit",async e=>{
- e.preventDefault();if(!isAdmin)return;
- const id=$("companyId").value;
- const record={
-  name:$("companyName").value.trim(),category:$("companyCategory").value.trim(),
-  description:$("companyDescription").value.trim(),image_url:validUrl($("companyImage").value)||null,
-  link:validUrl($("companyLink").value)||null,whatsapp:$("companyWhatsapp").value.trim(),
-  published:$("companyPublished").value==="true"
- };
- const result=id?await db.from("ge_companies").update(record).eq("id",id):await db.from("ge_companies").insert(record);
- if(result.error){alert("Erro ao salvar empresa: "+result.error.message);return}
- resetCompany();await loadAdmin();await loadPublic();alert("Empresa salva!");
+e.preventDefault();if(!isAdmin)return;
+const id=$("companyId").value;
+const record={
+name:$("companyName").value.trim(),category:$("companyCategory").value.trim(),
+description:$("companyDescription").value.trim(),
+image_url:validUrl($("companyImage").value)||null,
+link:validUrl($("companyLink").value)||null,
+whatsapp:$("companyWhatsapp").value.trim(),
+published:$("companyPublished").value==="true"
+};
+const result=id?await db.from("ge_companies").update(record).eq("id",id):await db.from("ge_companies").insert(record);
+if(result.error){alert("Erro ao salvar empresa: "+result.error.message);return}
+resetCompany();await loadAdmin();await loadPublic();alert("Empresa salva!");
 });
+
 $("campaignForm").addEventListener("submit",async e=>{
- e.preventDefault();if(!isAdmin)return;
- const id=$("campaignId").value;
- const company=$("campaignCompany").value||null;
- const record={
-  title:$("campaignTitle").value.trim(),type:$("campaignType").value,
-  description:$("campaignDescription").value.trim(),
-  image_url:validUrl($("campaignImage").value)||null,
-  link:validUrl($("campaignLink").value)||null,
-  company_id:company,published:$("campaignPublished").value==="true"
- };
- const result=id?await db.from("ge_campaigns").update(record).eq("id",id):await db.from("ge_campaigns").insert(record);
- if(result.error){alert("Erro ao salvar campanha: "+result.error.message);return}
- resetCampaign();await loadAdmin();await loadPublic();alert("Campanha salva!");
+e.preventDefault();if(!isAdmin)return;
+const id=$("campaignId").value;
+const record={
+title:$("campaignTitle").value.trim(),type:$("campaignType").value,
+description:$("campaignDescription").value.trim(),
+image_url:validUrl($("campaignImage").value)||null,
+link:validUrl($("campaignLink").value)||null,
+company_id:$("campaignCompany").value||null,
+published:$("campaignPublished").value==="true"
+};
+const result=id?await db.from("ge_campaigns").update(record).eq("id",id):await db.from("ge_campaigns").insert(record);
+if(result.error){alert("Erro ao salvar campanha: "+result.error.message);return}
+resetCampaign();await loadAdmin();await loadPublic();alert("Campanha salva!");
 });
+
 function editCompany(id){
- const x=companies.find(v=>v.id===id);if(!x)return;
- $("companyId").value=x.id;$("companyName").value=x.name;
- $("companyCategory").value=x.category||"";$("companyDescription").value=x.description||"";
- $("companyImage").value=x.image_url||"";$("companyLink").value=x.link||"";
- $("companyWhatsapp").value=x.whatsapp||"";$("companyPublished").value=String(x.published);
- $("tab-companies").scrollIntoView({behavior:"smooth"});
+const x=companies.find(v=>v.id===id);if(!x)return;
+$("companyId").value=x.id;$("companyName").value=x.name;
+$("companyCategory").value=x.category||"";
+$("companyDescription").value=x.description||"";
+$("companyImage").value=x.image_url||"";
+$("companyLink").value=x.link||"";
+$("companyWhatsapp").value=x.whatsapp||"";
+$("companyPublished").value=String(x.published);
+$("tab-companies").scrollIntoView({behavior:"smooth"});
 }
 function editCampaign(id){
- const x=campaigns.find(v=>v.id===id);if(!x)return;
- $("campaignId").value=x.id;$("campaignTitle").value=x.title;
- $("campaignType").value=x.type||"Publicidade";$("campaignDescription").value=x.description||"";
- $("campaignImage").value=x.image_url||"";$("campaignLink").value=x.link||"";
- $("campaignCompany").value=x.company_id||"";$("campaignPublished").value=String(x.published);
- $("tab-campaigns").scrollIntoView({behavior:"smooth"});
+const x=campaigns.find(v=>v.id===id);if(!x)return;
+$("campaignId").value=x.id;$("campaignTitle").value=x.title;
+$("campaignType").value=x.type||"Publicidade";
+$("campaignDescription").value=x.description||"";
+$("campaignImage").value=x.image_url||"";
+$("campaignLink").value=x.link||"";
+$("campaignCompany").value=x.company_id||"";
+$("campaignPublished").value=String(x.published);
+$("tab-campaigns").scrollIntoView({behavior:"smooth"});
 }
 async function updateLead(id,status){
- const {error}=await db.from("ge_leads").update({status}).eq("id",id);
- if(error){alert(error.message);return}loadAdmin();
+const {error}=await db.from("ge_leads").update({status}).eq("id",id);
+if(error){alert(error.message);return}loadAdmin();
 }
 async function deleteRecord(table,id){
- if(!confirm("Confirma a exclusão deste registro?"))return;
- const {error}=await db.from(table).delete().eq("id",id);
- if(error){alert("Erro: "+error.message);return}
- await loadAdmin();await loadPublic();
+if(!confirm("Confirma a exclusão deste registro?"))return;
+const {error}=await db.from(table).delete().eq("id",id);
+if(error){alert("Erro: "+error.message);return}
+await loadAdmin();await loadPublic();
 }
 (async()=>{
- const {data}=await db.auth.getSession();
- setAdmin(!!data.session);
- await loadPublic();
+const {data}=await db.auth.getSession();
+setAdmin(!!data.session);
+await loadPublic();
 })();
 </script>
 </body>
 </html>
+
 
 
