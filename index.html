@@ -103,6 +103,10 @@ footer a{color:#5aa9ff}
 .admin-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .admin-form .full{grid-column:1/-1}
 .admin-list{display:grid;gap:9px}
+.logo-preview{display:flex;align-items:center;gap:12px;margin-top:10px;padding:10px;border:1px dashed #315987;border-radius:9px;background:#071326}
+.logo-preview img{width:82px;height:82px;object-fit:contain;background:#fff;border-radius:8px;padding:5px}
+.logo-preview span{font-size:11px;color:#9bb0ca}
+.admin-company-logo{width:42px;height:42px;object-fit:contain;background:#fff;border-radius:7px;padding:3px;vertical-align:middle;margin-right:10px}
 .admin-item{border:1px solid #284362;padding:12px;border-radius:8px;display:flex;justify-content:space-between;gap:10px;align-items:center}
 .admin-item small{display:block;color:#91a6c1;margin-top:4px}
 .actions{display:flex;gap:6px;flex-wrap:wrap}
@@ -372,9 +376,13 @@ footer a{color:#5aa9ff}
 <textarea id="companyDescription" maxlength="1000"></textarea>
 </div>
 
-<div>
-<label>Imagem (URL)</label>
-<input id="companyImage" type="url">
+<div class="full">
+<label>Logo da empresa</label>
+<input id="companyLogoFile" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml">
+<input id="companyImage" type="hidden">
+<div class="logo-preview" id="companyLogoPreview">
+<span>Selecione o logo da empresa para visualizar aqui. Formatos: PNG, JPG, WEBP ou SVG. Máximo: 5 MB.</span>
+</div>
 </div>
 
 <div>
@@ -575,7 +583,7 @@ function renderCompanies(){
   :publicCompanies;
  $("companiesList").innerHTML=filtered.length
   ?filtered.map(x=>`<article class="card company-card">
-   <img src="${esc(imageOrPlaceholder(x.image_url))}" alt="${esc(x.name)}" loading="lazy">
+   <img src="${esc(imageOrPlaceholder(x.image_url))}" alt="Logo de ${esc(x.name)}" loading="lazy" style="height:175px;object-fit:contain;background:#fff;padding:16px">
    <span class="tag">${esc(x.category||"Empresa parceira")}</span>
    <h3>${esc(x.name)}</h3>
    <p>${esc(x.description||"Conheça esta empresa.")}</p>
@@ -788,6 +796,47 @@ button.classList.add("active");
 function resetCompany(){
 $("companyForm").reset();
 $("companyId").value="";
+$("companyImage").value="";
+$("companyLogoFile").value="";
+$("companyLogoPreview").innerHTML="<span>Selecione o logo da empresa para visualizar aqui. Formatos: PNG, JPG, WEBP ou SVG. Máximo: 5 MB.</span>";
+}
+
+function previewCompanyLogo(url){
+ const safe=validUrl(url);
+ $("companyLogoPreview").innerHTML=safe
+  ?`<img src="${esc(safe)}" alt="Pré-visualização do logo"><span>Logo selecionado. Ele aparecerá no cartão público da empresa.</span>`
+  :"<span>Selecione o logo da empresa para visualizar aqui. Formatos: PNG, JPG, WEBP ou SVG. Máximo: 5 MB.</span>";
+}
+
+$("companyLogoFile").addEventListener("change",()=>{
+ const file=$("companyLogoFile").files[0];
+ if(!file)return;
+ const allowed=["image/png","image/jpeg","image/webp","image/svg+xml"];
+ if(!allowed.includes(file.type)){
+  alert("Formato não permitido. Escolha PNG, JPG, WEBP ou SVG.");
+  $("companyLogoFile").value="";
+  return;
+ }
+ if(file.size>5*1024*1024){
+  alert("O logo deve ter no máximo 5 MB.");
+  $("companyLogoFile").value="";
+  return;
+ }
+ const localUrl=URL.createObjectURL(file);
+ $("companyLogoPreview").innerHTML=`<img src="${localUrl}" alt="Pré-visualização do logo"><span>${esc(file.name)}<br>Pronto para enviar ao salvar a empresa.</span>`;
+});
+
+async function uploadCompanyLogo(){
+ const file=$("companyLogoFile").files[0];
+ if(!file)return $("companyImage").value||null;
+ const ext=(file.name.split(".").pop()||"png").toLowerCase().replace(/[^a-z0-9]/g,"");
+ const path=`companies/${crypto.randomUUID()}.${ext}`;
+ const {error}=await db.storage.from("company-logos").upload(path,file,{
+  cacheControl:"3600",upsert:false,contentType:file.type
+ });
+ if(error)throw error;
+ const {data}=db.storage.from("company-logos").getPublicUrl(path);
+ return data.publicUrl;
 }
 
 function resetCampaign(){
@@ -879,11 +928,20 @@ if(!isAdmin)return;
 
 const id=$("companyId").value;
 
+let logoUrl;
+try{
+ logoUrl=await uploadCompanyLogo();
+}catch(error){
+ console.error("Erro ao enviar logo:",error);
+ alert("Não foi possível enviar o logo: "+error.message+". Confira a configuração do armazenamento no Supabase.");
+ return;
+}
+
 const record={
 name:$("companyName").value.trim(),
 category:$("companyCategory").value.trim(),
 description:$("companyDescription").value.trim(),
-image_url:validUrl($("companyImage").value)||null,
+image_url:validUrl(logoUrl)||null,
 link:validUrl($("companyLink").value)||null,
 whatsapp:$("companyWhatsapp").value.trim(),
 published:$("companyPublished").value==="true"
@@ -959,6 +1017,8 @@ $("companyName").value=x.name;
 $("companyCategory").value=x.category||"";
 $("companyDescription").value=x.description||"";
 $("companyImage").value=x.image_url||"";
+$("companyLogoFile").value="";
+previewCompanyLogo(x.image_url||"");
 $("companyLink").value=x.link||"";
 $("companyWhatsapp").value=x.whatsapp||"";
 $("companyPublished").value=String(x.published);
@@ -1302,4 +1362,4 @@ await loadPublic();
 
 </script>
 </body>
-  </html>
+</html>
