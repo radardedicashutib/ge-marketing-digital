@@ -437,9 +437,13 @@ footer a{color:#5aa9ff}
 <textarea id="campaignDescription" maxlength="1200"></textarea>
 </div>
 
-<div>
-<label>Imagem (URL)</label>
-<input id="campaignImage" type="url">
+<div class="full">
+<label>Imagem da campanha</label>
+<input id="campaignImageFile" type="file" accept="image/png,image/jpeg,image/webp,image/svg+xml">
+<input id="campaignImage" type="hidden">
+<div class="logo-preview" id="campaignImagePreview">
+<span>Selecione a arte ou foto da campanha. Formatos: PNG, JPG, WEBP ou SVG. Máximo: 5 MB.</span>
+</div>
 </div>
 
 <div>
@@ -842,6 +846,47 @@ async function uploadCompanyLogo(){
 function resetCampaign(){
 $("campaignForm").reset();
 $("campaignId").value="";
+$("campaignImage").value="";
+$("campaignImageFile").value="";
+$("campaignImagePreview").innerHTML="<span>Selecione a arte ou foto da campanha. Formatos: PNG, JPG, WEBP ou SVG. Máximo: 5 MB.</span>";
+}
+
+function previewCampaignImage(url){
+ const safe=validUrl(url);
+ $("campaignImagePreview").innerHTML=safe
+  ?`<img src="${esc(safe)}" alt="Pré-visualização da campanha"><span>Imagem selecionada. Ela aparecerá no cartão público da campanha.</span>`
+  :"<span>Selecione a arte ou foto da campanha. Formatos: PNG, JPG, WEBP ou SVG. Máximo: 5 MB.</span>";
+}
+
+$("campaignImageFile").addEventListener("change",()=>{
+ const file=$("campaignImageFile").files[0];
+ if(!file)return;
+ const allowed=["image/png","image/jpeg","image/webp","image/svg+xml"];
+ if(!allowed.includes(file.type)){
+  alert("Formato não permitido. Escolha PNG, JPG, WEBP ou SVG.");
+  $("campaignImageFile").value="";
+  return;
+ }
+ if(file.size>5*1024*1024){
+  alert("A imagem deve ter no máximo 5 MB.");
+  $("campaignImageFile").value="";
+  return;
+ }
+ const localUrl=URL.createObjectURL(file);
+ $("campaignImagePreview").innerHTML=`<img src="${localUrl}" alt="Pré-visualização da campanha"><span>${esc(file.name)}<br>Pronta para enviar ao salvar a campanha.</span>`;
+});
+
+async function uploadCampaignImage(){
+ const file=$("campaignImageFile").files[0];
+ if(!file)return $("campaignImage").value||null;
+ const ext=(file.name.split(".").pop()||"png").toLowerCase().replace(/[^a-z0-9]/g,"");
+ const path=`campaigns/${crypto.randomUUID()}.${ext}`;
+ const {error}=await db.storage.from("company-logos").upload(path,file,{
+  cacheControl:"3600",upsert:false,contentType:file.type
+ });
+ if(error)throw error;
+ const {data}=db.storage.from("company-logos").getPublicUrl(path);
+ return data.publicUrl;
 }
 
 /* =========================
@@ -976,11 +1021,20 @@ if(!isAdmin)return;
 
 const id=$("campaignId").value;
 
+let campaignImageUrl;
+try{
+ campaignImageUrl=await uploadCampaignImage();
+}catch(error){
+ console.error("Erro ao enviar imagem da campanha:",error);
+ alert("Não foi possível enviar a imagem: "+error.message+". Confira a configuração do armazenamento no Supabase.");
+ return;
+}
+
 const record={
 title:$("campaignTitle").value.trim(),
 type:$("campaignType").value,
 description:$("campaignDescription").value.trim(),
-image_url:validUrl($("campaignImage").value)||null,
+image_url:validUrl(campaignImageUrl)||null,
 link:validUrl($("campaignLink").value)||null,
 company_id:$("campaignCompany").value||null,
 published:$("campaignPublished").value==="true"
@@ -1042,6 +1096,8 @@ $("campaignTitle").value=x.title;
 $("campaignType").value=x.type||"Publicidade";
 $("campaignDescription").value=x.description||"";
 $("campaignImage").value=x.image_url||"";
+$("campaignImageFile").value="";
+previewCampaignImage(x.image_url||"");
 $("campaignLink").value=x.link||"";
 $("campaignCompany").value=x.company_id||"";
 $("campaignPublished").value=String(x.published);
