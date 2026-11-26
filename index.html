@@ -4,898 +4,441 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#155eef">
+<meta name="theme-color" content="#101c35">
+<meta name="description" content="GE Marketing Digital: publicidade, campanhas, vídeos UGC e divulgação de marcas.">
+<title>GE MARKETING DIGITAL | Sua marca merece ser vista</title>
 <link rel="manifest" href="./manifest.json">
-<title>GEESPORTESRUSTICO</title>
-
 <style>
-*{box-sizing:border-box}
-body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f4f7fc;color:#1f2937}
-header{background:#155eef;color:white;padding:22px 16px;text-align:center}
-header h1{margin:0;font-size:22px}
-header p{margin:6px 0 0;font-size:13px}
-.container{max-width:1000px;margin:auto;padding:16px}
-.search-box{margin-bottom:20px}
-.search-box input,.admin input,.admin select,.login-box input{
-width:100%;padding:14px;margin:7px 0;border-radius:10px;border:1px solid #ddd;font-size:15px
+:root{
+  --navy:#101c35;--blue:#2563eb;--light:#eff5ff;
+  --white:#fff;--text:#18243a;--muted:#64748b;
+  --green:#16a34a;--border:#e2e8f0;
 }
-.categories{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.category{background:white;border:none;padding:16px 8px;border-radius:12px;font-weight:bold;box-shadow:0 3px 10px rgba(0,0,0,.08);cursor:pointer}
-.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-top:15px}
-.product{background:white;border-radius:15px;overflow:hidden;box-shadow:0 3px 12px rgba(0,0,0,.10)}
-.gallery{position:relative;width:100%;height:210px;background:#eee;overflow:hidden;touch-action:pan-y}
-.gallery img{width:100%;height:100%;object-fit:contain;display:block;cursor:zoom-in}
-.gallery-arrow{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:40px;border:none;border-radius:20px;background:rgba(0,0,0,.55);color:white;font-size:23px;cursor:pointer;z-index:2}
-.gallery-prev{left:5px}.gallery-next{right:5px}
-.gallery-dots{position:absolute;bottom:8px;left:0;right:0;display:flex;justify-content:center;gap:6px;z-index:2}
-.gallery-dot{width:9px;height:9px;padding:0;border:none;border-radius:50%;background:rgba(255,255,255,.7);cursor:pointer}
-.gallery-dot.active{background:#155eef;transform:scale(1.3)}
-.gallery-counter{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.65);color:white;font-size:12px;padding:5px 9px;border-radius:15px}
-.image-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:9999;align-items:center;justify-content:center;padding:15px}
-.image-modal img{max-width:100%;max-height:85vh;object-fit:contain}
-.modal-close{position:absolute;top:15px;right:20px;background:none;border:none;color:white;font-size:36px;cursor:pointer}
-.product-info{padding:12px}
-.product h3{margin:0 0 10px;font-size:16px}
-.offer{background:#ffeded;color:#dc2626;padding:10px;border-radius:8px;font-size:15px;font-weight:bold;text-align:center;margin:10px 0}
-.platform{color:#666;font-size:12px;margin-bottom:12px}
-.buy-button{display:block;width:100%;border:none;background:#16a34a;color:white;padding:15px 10px;border-radius:10px;font-size:16px;font-weight:bold;text-align:center;text-decoration:none;cursor:pointer}
-.buy-button:active{background:#15803d}
-.admin,.login-box{background:white;margin-top:25px;padding:20px;border-radius:16px;box-shadow:0 3px 12px rgba(0,0,0,.08)}
-.admin h2,.login-box h2{margin-top:0}
-.add-button,.login-button,.logout-button,.share-button{display:block;width:100%;border:none;background:#155eef;color:white;padding:15px;border-radius:10px;font-weight:bold;font-size:15px;margin-top:10px;cursor:pointer}
-.add-button:disabled{opacity:.6;cursor:wait}
-.cancel-button{display:none;width:100%;border:none;background:#777;color:white;padding:13px;border-radius:10px;margin-top:8px;cursor:pointer}
-.manage-buttons{display:flex;gap:7px;margin-top:10px}
-.edit-button,.delete-button{flex:1;border:none;padding:11px 5px;border-radius:8px;font-size:12px;font-weight:bold;cursor:pointer}
-.edit-button{background:#e0edff;color:#155eef}
-.delete-button{background:#fee2e2;color:#dc2626}
-.preview-box{display:none;margin-top:12px}
-.preview-list{display:flex;gap:10px;overflow-x:auto;padding:10px 4px}
-.preview-item{position:relative;flex:0 0 85px}
-.preview-item img{width:85px;height:85px;object-fit:cover;border-radius:9px;border:2px solid #ddd}
-.remove-photo{position:absolute;top:-7px;right:-5px;border:none;background:#dc2626;color:white;width:23px;height:23px;border-radius:50%;cursor:pointer}
-.photo-count{font-size:13px;color:#666}
-.empty{text-align:center;padding:30px;color:#777}
-footer{text-align:center;padding:30px;font-size:13px;color:#777}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#f7f9fd;color:var(--text)}
+button,input,textarea,select{font:inherit}
+button,a{cursor:pointer}
+a{text-decoration:none;color:inherit}
+header{background:var(--navy);color:white;position:sticky;top:0;z-index:20}
+.nav{max-width:1150px;margin:auto;padding:15px 20px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.logo{font-size:20px;font-weight:900;letter-spacing:.4px}
+.logo span{color:#60a5fa}
+.navlinks{display:flex;align-items:center;gap:20px;font-size:13px}
+.navlinks a:hover{color:#93c5fd}
+.btn{display:inline-block;border:0;border-radius:10px;padding:13px 19px;background:var(--blue);color:white;font-weight:bold;text-align:center}
+.btn:hover{filter:brightness(1.08)}
+.btn.green{background:var(--green)}
+.btn.light{background:white;color:var(--navy)}
+.btn.gray{background:#64748b}
+.container{max-width:1150px;margin:auto;padding:25px 20px}
+.hero{background:linear-gradient(125deg,#101c35,#173d79);color:white;padding:75px 20px}
+.hero-inner{max-width:1150px;margin:auto;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:40px}
+.hero h1{font-size:clamp(36px,5vw,58px);line-height:1.06;margin:0 0 18px}
+.hero h1 span{color:#60a5fa}
+.hero p{color:#dbeafe;font-size:17px;line-height:1.7;max-width:620px}
+.hero-card{background:rgba(255,255,255,.09);border:1px solid rgba(255,255,255,.2);border-radius:22px;padding:28px}
+.hero-card strong{font-size:24px}
+.hero-card p{font-size:14px}
+.section-title{text-align:center;margin:15px 0 30px}
+.section-title h2{font-size:30px;margin:0 0 9px;color:var(--navy)}
+.section-title p{color:var(--muted);margin:0}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.card{background:white;border:1px solid var(--border);border-radius:16px;padding:22px;box-shadow:0 5px 18px rgba(15,23,42,.04)}
+.card h3{margin:8px 0}
+.card p{color:var(--muted);font-size:14px;line-height:1.6}
+.service-icon{font-size:30px}
+.price{font-size:29px;font-weight:900;color:var(--blue);margin:12px 0}
+.tag{display:inline-block;background:#eaf1ff;color:#1d4ed8;border-radius:20px;padding:6px 10px;font-size:11px;font-weight:bold}
+.company-card img,.campaign-card img{width:100%;height:170px;object-fit:cover;border-radius:11px;background:#eaf0f8}
+.company-card .btn,.campaign-card .btn{width:100%;margin-top:10px}
+.empty{grid-column:1/-1;text-align:center;padding:30px;color:var(--muted);background:white;border-radius:14px}
+.cta{background:var(--navy);color:white;border-radius:20px;padding:38px;text-align:center}
+.cta p{color:#cbd5e1;line-height:1.6}
+.formbox{background:white;border:1px solid var(--border);border-radius:17px;padding:24px;max-width:720px;margin:25px auto}
+.field{margin:12px 0}
+.field label{display:block;font-size:13px;font-weight:bold;margin-bottom:6px}
+.field input,.field textarea,.field select,.login input,.admin-form input,.admin-form textarea,.admin-form select{
+ width:100%;padding:13px;border:1px solid #cbd5e1;border-radius:9px;background:white
+}
+.field textarea,.admin-form textarea{min-height:95px;resize:vertical}
+.formbox button{width:100%}
+.status{font-size:13px;color:var(--muted);margin-top:10px}
+footer{background:#0b1427;color:#cbd5e1;text-align:center;padding:30px 15px;margin-top:40px;font-size:13px}
+.admin-area{display:none;background:#eaf0fa;padding:30px 15px}
+.admin-wrap{max-width:1100px;margin:auto}
+.admin-panel{background:white;border-radius:16px;padding:22px;margin:15px 0}
+.admin-panel h3{margin-top:0}
+.admin-form{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.admin-form .full{grid-column:1/-1}
+.admin-list{display:grid;gap:9px}
+.admin-item{border:1px solid var(--border);padding:12px;border-radius:10px;display:flex;justify-content:space-between;gap:10px;align-items:center}
+.admin-item small{display:block;color:var(--muted);margin-top:4px}
+.actions{display:flex;gap:6px;flex-wrap:wrap}
+.actions button{border:0;padding:8px 10px;border-radius:7px;font-weight:bold}
+.edit{background:#dbeafe;color:#1d4ed8}
+.del{background:#fee2e2;color:#b91c1c}
 .hidden{display:none!important}
-.status{font-size:13px;margin-top:10px;color:#555}
-@media(max-width:380px){
-.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.gallery{height:175px}
-.product h3{font-size:14px}
-.buy-button{font-size:14px}
+.login{max-width:400px;margin:20px auto;background:white;padding:22px;border-radius:15px}
+.login input{margin:6px 0}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+.tabs button{border:0;background:#dbeafe;color:#1e40af;padding:10px 14px;border-radius:8px;font-weight:bold}
+.tabs button.active{background:var(--blue);color:white}
+@media(max-width:800px){
+ .hero-inner{grid-template-columns:1fr}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .navlinks{gap:10px;font-size:11px}
+}
+@media(max-width:560px){
+ .nav{flex-wrap:wrap}.navlinks{width:100%;justify-content:space-between}
+ .grid{grid-template-columns:1fr}
+ .hero{padding:48px 15px}
+ .hero-card{padding:20px}
+ .admin-form{grid-template-columns:1fr}
+ .admin-form .full{grid-column:auto}
+ .admin-item{align-items:flex-start;flex-direction:column}
 }
 </style>
 </head>
-
 <body>
 
 <header>
-<h1>🛒 GEESPORTESRUSTICO</h1>
-<p>Ofertas e produtos selecionados para você</p>
+ <nav class="nav">
+  <a class="logo" href="#">GE <span>MARKETING DIGITAL</span></a>
+  <div class="navlinks">
+   <a href="#servicos">Serviços</a>
+   <a href="#empresas">Empresas</a>
+   <a href="#campanhas">Campanhas</a>
+   <a href="#contato">Contato</a>
+  </div>
+ </nav>
 </header>
 
-<div class="container">
+<section class="hero">
+ <div class="hero-inner">
+  <div>
+   <span class="tag">PUBLICIDADE • MARKETING • CONTEÚDO</span>
+   <h1>Sua marca merece <span>ser vista.</span></h1>
+   <p>Aproximamos empresas e consumidores através de campanhas digitais, vídeos promocionais, conteúdo UGC e divulgação de produtos e serviços.</p>
+   <a class="btn" href="#contato">QUERO DIVULGAR MINHA EMPRESA</a>
+  </div>
+  <div class="hero-card">
+   <strong>🚀 Sua empresa em evidência</strong>
+   <p>Apresente sua marca, conquiste visibilidade e encontre novas oportunidades comerciais com a GE MARKETING DIGITAL.</p>
+   <a class="btn light" href="#servicos">Conheça nossos serviços</a>
+  </div>
+ </div>
+</section>
 
-<div class="search-box">
-<input type="text" id="searchInput" placeholder="🔎 Pesquisar produtos..." oninput="searchProducts()">
+<section class="container" id="servicos">
+ <div class="section-title">
+  <h2>Nossos serviços</h2>
+  <p>Soluções para divulgar sua empresa e fortalecer sua marca.</p>
+ </div>
+ <div class="grid">
+  <article class="card"><div class="service-icon">📢</div><h3>Publicidade digital</h3><p>Campanhas de divulgação para apresentar sua empresa a novos públicos.</p></article>
+  <article class="card"><div class="service-icon">🎬</div><h3>Vídeos UGC</h3><p>Vídeos demonstrativos e conteúdos com linguagem natural para apresentar produtos.</p></article>
+  <article class="card"><div class="service-icon">🛍️</div><h3>Marketing de afiliados</h3><p>Divulgação de produtos por links rastreáveis e comissões por vendas válidas.</p></article>
+  <article class="card"><div class="service-icon">🏢</div><h3>Divulgação de empresas</h3><p>Apresentação de lojas, marcas, prestadores de serviços e negócios locais.</p></article>
+  <article class="card"><div class="service-icon">📱</div><h3>Conteúdo para redes</h3><p>Criação de materiais promocionais para redes sociais e canais digitais.</p></article>
+  <article class="card"><div class="service-icon">🤝</div><h3>Parcerias comerciais</h3><p>Conexão com marcas interessadas em campanhas e divulgação de seus produtos.</p></article>
+ </div>
+</section>
+
+<section class="container" id="empresas">
+ <div class="section-title"><h2>Empresas e marcas</h2><p>Conheça empresas parceiras e anunciantes.</p></div>
+ <div class="grid" id="companiesList"><div class="empty">Carregando empresas...</div></div>
+</section>
+
+<section class="container" id="campanhas">
+ <div class="section-title"><h2>Campanhas em destaque</h2><p>Produtos, serviços e conteúdos divulgados pela GE.</p></div>
+ <div class="grid" id="campaignsList"><div class="empty">Carregando campanhas...</div></div>
+</section>
+
+<section class="container">
+ <div class="cta">
+  <h2>Quer colocar sua marca em destaque?</h2>
+  <p>Apresente sua empresa para a GE MARKETING DIGITAL e solicite uma proposta de divulgação.</p>
+  <a class="btn light" href="#contato">SOLICITAR UMA PROPOSTA</a>
+ </div>
+</section>
+
+<section class="container" id="contato">
+ <div class="section-title"><h2>Divulgue sua empresa</h2><p>Preencha os dados e nossa equipe poderá entrar em contato.</p></div>
+ <form class="formbox" id="leadForm">
+  <div class="field"><label>Nome *</label><input id="leadName" required maxlength="100" placeholder="Seu nome"></div>
+  <div class="field"><label>Empresa ou marca *</label><input id="leadCompany" required maxlength="150" placeholder="Nome da empresa"></div>
+  <div class="field"><label>WhatsApp *</label><input id="leadPhone" required maxlength="30" placeholder="(11) 99999-9999"></div>
+  <div class="field"><label>E-mail</label><input id="leadEmail" type="email" maxlength="150" placeholder="seuemail@empresa.com"></div>
+  <div class="field"><label>Qual serviço procura?</label>
+   <select id="leadService">
+    <option>Publicidade digital</option><option>Vídeos UGC</option>
+    <option>Marketing de afiliados</option><option>Divulgação de empresa</option>
+    <option>Parceria comercial</option><option>Outro</option>
+   </select>
+  </div>
+  <div class="field"><label>Conte um pouco sobre sua necessidade</label><textarea id="leadMessage" maxlength="1500" placeholder="Descreva sua empresa e o que deseja divulgar"></textarea></div>
+  <button class="btn" id="leadSubmit">ENVIAR SOLICITAÇÃO</button>
+  <p class="status" id="leadStatus">Seus dados serão utilizados para responder à sua solicitação.</p>
+ </form>
+</section>
+
+<section class="container" style="text-align:center">
+ <a class="btn green" id="whatsappButton" href="#" target="_blank" rel="noopener">FALAR PELO WHATSAPP</a>
+ <p class="status">Atendimento comercial GE MARKETING DIGITAL.</p>
+</section>
+
+<section class="admin-area" id="adminArea">
+ <div class="admin-wrap">
+  <div class="admin-panel">
+   <h2>⚙️ Painel administrativo — GE</h2>
+   <p>Gerencie empresas, campanhas e solicitações comerciais.</p>
+   <button class="btn gray" onclick="logout()">SAIR DO PAINEL</button>
+   <div class="tabs">
+    <button class="active" onclick="showTab('companies',this)">Empresas</button>
+    <button onclick="showTab('campaigns',this)">Campanhas</button>
+    <button onclick="showTab('leads',this)">Solicitações</button>
+   </div>
+  </div>
+
+  <div class="admin-panel admin-tab" id="tab-companies">
+   <h3>Cadastro de empresa</h3>
+   <form class="admin-form" id="companyForm">
+    <input id="companyId" type="hidden">
+    <div><label>Nome da empresa</label><input id="companyName" required maxlength="150"></div>
+    <div><label>Categoria</label><input id="companyCategory" maxlength="100" placeholder="Tecnologia, moda, serviços..."></div>
+    <div class="full"><label>Descrição</label><textarea id="companyDescription" maxlength="1000"></textarea></div>
+    <div><label>Logo ou imagem (URL)</label><input id="companyImage" type="url"></div>
+    <div><label>Site ou contato (URL)</label><input id="companyLink" type="url"></div>
+    <div><label>WhatsApp (opcional)</label><input id="companyWhatsapp" maxlength="30"></div>
+    <div><label>Visibilidade</label><select id="companyPublished"><option value="true">Publicado</option><option value="false">Rascunho</option></select></div>
+    <button class="btn full" type="submit">SALVAR EMPRESA</button>
+    <button class="btn gray full" type="button" onclick="resetCompany()">LIMPAR</button>
+   </form>
+   <h3>Empresas cadastradas</h3><div class="admin-list" id="adminCompanies"></div>
+  </div>
+
+  <div class="admin-panel admin-tab hidden" id="tab-campaigns">
+   <h3>Cadastro de campanha</h3>
+   <form class="admin-form" id="campaignForm">
+    <input id="campaignId" type="hidden">
+    <div><label>Título</label><input id="campaignTitle" required maxlength="150"></div>
+    <div><label>Tipo</label><select id="campaignType"><option>Publicidade</option><option>UGC</option><option>Afiliado</option><option>Oferta</option></select></div>
+    <div class="full"><label>Descrição</label><textarea id="campaignDescription" maxlength="1200"></textarea></div>
+    <div><label>Imagem (URL)</label><input id="campaignImage" type="url"></div>
+    <div><label>Link de destino</label><input id="campaignLink" type="url"></div>
+    <div><label>Empresa relacionada</label><select id="campaignCompany"><option value="">Sem empresa vinculada</option></select></div>
+    <div><label>Visibilidade</label><select id="campaignPublished"><option value="true">Publicado</option><option value="false">Rascunho</option></select></div>
+    <button class="btn full" type="submit">SALVAR CAMPANHA</button>
+    <button class="btn gray full" type="button" onclick="resetCampaign()">LIMPAR</button>
+   </form>
+   <h3>Campanhas cadastradas</h3><div class="admin-list" id="adminCampaigns"></div>
+  </div>
+
+  <div class="admin-panel admin-tab hidden" id="tab-leads">
+   <h3>Solicitações recebidas</h3><div class="admin-list" id="adminLeads"></div>
+  </div>
+ </div>
+</section>
+
+<div class="login hidden" id="loginBox">
+ <h3>🔐 Acesso administrativo</h3>
+ <input id="adminEmail" type="email" placeholder="E-mail cadastrado no Supabase">
+ <input id="adminPassword" type="password" placeholder="Senha">
+ <button class="btn" style="width:100%" onclick="login()">ENTRAR</button>
+ <p class="status" id="loginStatus"></p>
 </div>
 
-<h2>📂 Categorias</h2>
-
-<div class="categories">
-<button class="category" onclick="filterCategory('Cozinha')">🍳 Cozinha</button>
-<button class="category" onclick="filterCategory('Banheiro')">🚿 Artigos Banheiro</button>
-<button class="category" onclick="filterCategory('Brinquedos')">🧸 Brinquedos</button>
-<button class="category" onclick="filterCategory('Carro')">🚗 Acessórios de Carro</button>
-<button class="category" onclick="filterCategory('Roupa de Time')">⚽ Roupa de Time</button>
-<button class="category" onclick="filterCategory('Celular')">📱 Celular</button>
-<button class="category" onclick="filterCategory('Fones')">🎧 Fones de Ouvido</button>
-<button class="category" onclick="filterCategory('Pet')">🐶 Pet</button>
-<button class="category" onclick="filterCategory('Moda')">👕 Moda</button>
-<button class="category" onclick="filterCategory('Tênis')">👟 Tênis</button>
-<button class="category" onclick="showAllProducts()">🏠 Todos</button>
-</div>
-
-<h2 id="productsTitle">🔥 Produtos e Ofertas</h2>
-<div class="products" id="products"></div>
-
-<button class="login-button" id="openLoginButton" onclick="showLogin()">🔐 ENTRAR COMO ADMINISTRADOR</button>
-
-<div class="login-box hidden" id="loginPanel">
-<h2>🔐 Acesso do administrador</h2>
-<input type="email" id="loginEmail" placeholder="E-mail do administrador" autocomplete="username">
-<input type="password" id="loginPassword" placeholder="Senha" autocomplete="current-password">
-<button class="login-button" onclick="loginAdmin()">ENTRAR</button>
-<button class="logout-button" style="background:#777" onclick="hideLogin()">CANCELAR</button>
-<p class="status" id="loginStatus"></p>
-</div>
-
-<div class="admin hidden" id="adminPanel">
-
-<h2 id="formTitle">➕ Cadastrar Produto</h2>
-
-<input type="text" id="productName" placeholder="Nome do produto">
-
-<label><strong>📸 Escolha as fotos do produto:</strong></label>
-<input type="file" id="productImage" accept="image/*" multiple>
-<p class="photo-count">Selecione várias fotos de uma vez. Você também pode adicionar mais fotos depois.</p>
-
-<div class="preview-box" id="previewBox">
-<strong>👀 Fotos selecionadas:</strong>
-<div class="preview-list" id="previewList"></div>
-</div>
-
-<select id="productCategory">
-<option value="">Escolha a categoria</option>
-<option>Cozinha</option>
-<option>Banheiro</option>
-<option>Brinquedos</option>
-<option>Carro</option>
-<option>Roupa de Time</option>
-<option>Celular</option>
-<option>Fones</option>
-<option>Pet</option>
-<option>Moda</option>
-<option>Tênis</option>
-</select>
-
-<select id="productPlatform">
-<option value="">Escolha a plataforma</option>
-<option>Shopee</option>
-<option>Mercado Livre</option>
-</select>
-
-<input type="url" id="productLink" placeholder="🔗 Cole aqui seu link de afiliado">
-
-<button class="add-button" id="submitButton" onclick="addProduct()">🚀 PUBLICAR PRODUTO</button>
-<button class="cancel-button" id="cancelButton" onclick="cancelEdit()">CANCELAR EDIÇÃO</button>
-<p class="status" id="adminStatus"></p>
-
-<button class="logout-button" onclick="logoutAdmin()">SAIR DA ÁREA ADMINISTRATIVA</button>
-
-</div>
-
-<button class="share-button" onclick="shareStore()">📲 COMPARTILHAR LOJA</button>
-
-</div>
-
-<div class="image-modal" id="imageModal" onclick="closeImageModal()">
-<button class="modal-close" onclick="closeImageModal()">×</button>
-<img id="modalImage" src="" alt="Foto ampliada do produto">
-</div>
-
-<footer>© 2026 GEESPORTESRUSTICO • Ofertas selecionadas</footer>
+<footer>
+ <strong>GE MARKETING DIGITAL</strong><br>
+ Sua marca merece ser vista.<br>
+ © <span id="year"></span> GE MARKETING DIGITAL. Todos os direitos reservados.<br><br>
+ <a href="#" onclick="toggleLogin();return false">Acesso administrativo</a>
+</footer>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
 <script>
+/* CONFIGURAÇÃO: aproveitada do projeto anterior */
 const SUPABASE_URL="https://eefhhutbowjwnxfsecjd.supabase.co";
 const SUPABASE_KEY="sb_publishable_SdRT7jPMqT_ZgQvVNcyazg_vKFjKY_a";
+const WHATSAPP_NUMBER=""; // Coloque seu número com DDI e DDD, somente números.
 
-const supabaseClient=window.supabase.createClient(
- SUPABASE_URL,
- SUPABASE_KEY
-);
+const db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+let isAdmin=false,companies=[],campaigns=[];
 
-let products=[];
-let selectedImages=[];
-let editingId=null;
-let isAdmin=false;
-let readingImages=false;
+const $=id=>document.getElementById(id);
+const esc=value=>String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const validUrl=value=>{try{const u=new URL(value);return ["http:","https:"].includes(u.protocol)?u.href:""}catch{return ""}};
+$("year").textContent=new Date().getFullYear();
+$("whatsappButton").href=WHATSAPP_NUMBER
+ ? "https://wa.me/"+WHATSAPP_NUMBER+"?text="+encodeURIComponent("Olá! Quero conhecer os serviços da GE MARKETING DIGITAL.")
+ : "#contato";
 
-function setStatus(id,message){
- document.getElementById(id).textContent=message||"";
+function imageOrPlaceholder(url){
+ const safe=validUrl(url);
+ return safe||"https://placehold.co/600x400/eaf0f8/1e3a8a?text=GE+Marketing";
 }
 
-function showLogin(){
- document.getElementById("loginPanel").classList.remove("hidden");
- document.getElementById("openLoginButton").classList.add("hidden");
+async function loadPublic(){
+ const [c,p]=await Promise.all([
+  db.from("ge_companies").select("*").eq("published",true).order("created_at",{ascending:false}),
+  db.from("ge_campaigns").select("*,ge_companies(name)").eq("published",true).order("created_at",{ascending:false})
+ ]);
+ companies=c.data||[];campaigns=p.data||[];
+ $("companiesList").innerHTML=companies.length?companies.map(x=>`
+  <article class="card company-card">
+   <img src="${esc(imageOrPlaceholder(x.image_url))}" alt="${esc(x.name)}" loading="lazy">
+   <span class="tag">${esc(x.category||"Empresa parceira")}</span>
+   <h3>${esc(x.name)}</h3><p>${esc(x.description||"Conheça esta empresa.")}</p>
+   ${validUrl(x.link)?`<a class="btn" href="${esc(validUrl(x.link))}" target="_blank" rel="noopener">CONHECER EMPRESA</a>`:""}
+  </article>`).join(""):'<div class="empty">Em breve, novas empresas e marcas serão apresentadas aqui.</div>';
+
+ $("campaignsList").innerHTML=campaigns.length?campaigns.map(x=>`
+  <article class="card campaign-card">
+   <img src="${esc(imageOrPlaceholder(x.image_url))}" alt="${esc(x.title)}" loading="lazy">
+   <span class="tag">${esc(x.type||"Campanha")}</span>
+   <h3>${esc(x.title)}</h3><p>${esc(x.description||"Confira esta campanha.")}</p>
+   ${x.ge_companies?.name?`<small>${esc(x.ge_companies.name)}</small>`:""}
+   ${validUrl(x.link)?`<a class="btn" href="${esc(validUrl(x.link))}" target="_blank" rel="noopener">SAIBA MAIS</a>`:""}
+  </article>`).join(""):'<div class="empty">Nenhuma campanha publicada no momento.</div>';
 }
 
-function hideLogin(){
- document.getElementById("loginPanel").classList.add("hidden");
- document.getElementById("openLoginButton").classList.remove("hidden");
-}
-
-function updateAdminView(){
- document.getElementById("adminPanel").classList.toggle("hidden",!isAdmin);
- document.getElementById("openLoginButton").classList.toggle("hidden",isAdmin);
- document.getElementById("loginPanel").classList.add("hidden");
- renderProducts();
-}
-
-async function loginAdmin(){
- const email=document.getElementById("loginEmail").value.trim();
- const password=document.getElementById("loginPassword").value;
-
- if(!email||!password){
-  setStatus("loginStatus","Informe seu e-mail e sua senha.");
-  return;
- }
-
- setStatus("loginStatus","Verificando acesso...");
-
- const {data,error}=await supabaseClient.auth.signInWithPassword({
-  email,password
- });
-
- if(error){
-  setStatus("loginStatus","Não foi possível entrar: "+error.message);
-  return;
- }
-
- isAdmin=true;
- updateAdminView();
- setStatus("adminStatus","Você entrou na área administrativa.");
-}
-
-async function logoutAdmin(){
- await supabaseClient.auth.signOut();
- isAdmin=false;
- resetForm();
- updateAdminView();
-}
-
-async function checkSession(){
- const {data,error}=await supabaseClient.auth.getSession();
- if(!error&&data.session)isAdmin=true;
- updateAdminView();
-}
-
-supabaseClient.auth.onAuthStateChange((_event,session)=>{
- isAdmin=!!session;
- updateAdminView();
-});
-
-// CARREGAR PRODUTOS
-
-async function loadProducts(){
- const container=document.getElementById("products");
- container.innerHTML='<div class="empty">⏳ Carregando produtos...</div>';
-
- const {data,error}=await supabaseClient
-  .from("products")
-  .select("id,name,category,platform,link,images")
-  .order("created_at",{ascending:false});
-
- if(error){
-  container.innerHTML='<div class="empty">Não foi possível carregar os produtos. Verifique a conexão e as permissões do Supabase.</div>';
-  console.error(error);
-  return;
- }
-
- products=(data||[]).map(p=>({
-  ...p,
-  images:Array.isArray(p.images)?p.images:[]
- }));
-
- renderProducts();
-}
-
-// SELECIONAR FOTOS
-
-document.getElementById("productImage").addEventListener("change",previewImage);
-
-function previewImage(){
-
- const input=document.getElementById("productImage");
- const files=Array.from(input.files||[]);
-
- if(!files.length)return;
-
- readingImages=true;
-
- const button=document.getElementById("submitButton");
- button.disabled=true;
- button.textContent="⏳ CARREGANDO FOTOS...";
-
- let added=0;
-
- files.forEach(file=>{
-  if(!file.type.startsWith("image/"))return;
-
-  selectedImages.push({
-   file:file,
-   url:URL.createObjectURL(file)
-  });
-
-  added++;
- });
-
- // As fotos já estão guardadas em selectedImages.
- // Limpar o input permite selecionar outras fotos depois.
- input.value="";
-
- renderPreview();
-
- readingImages=false;
- button.disabled=false;
- button.textContent=editingId!==null?
-  "💾 SALVAR ALTERAÇÕES":
-  "🚀 PUBLICAR PRODUTO";
-
- if(added){
-  setStatus("adminStatus",added+" foto(s) adicionada(s). Total: "+selectedImages.length+".");
- }else{
-  setStatus("adminStatus","Nenhum arquivo de imagem válido foi selecionado.");
- }
-}
-
-// PRÉVIA DAS FOTOS
-
-function renderPreview(){
-
- const box=document.getElementById("previewBox");
- const list=document.getElementById("previewList");
-
- list.innerHTML="";
-
- if(!selectedImages.length){
-  box.style.display="none";
-  return;
- }
-
- box.style.display="block";
-
- selectedImages.forEach((item,index)=>{
-
-  const div=document.createElement("div");
-  div.className="preview-item";
-
-  const img=document.createElement("img");
-  img.src=item.url;
-
-  const remove=document.createElement("button");
-  remove.className="remove-photo";
-  remove.textContent="×";
-
-  remove.onclick=()=>{
-
-   if(item.file&&item.url.startsWith("blob:")){
-    URL.revokeObjectURL(item.url);
-   }
-
-   selectedImages.splice(index,1);
-   renderPreview();
-
-   setStatus("adminStatus",selectedImages.length+" foto(s) restante(s).");
-  };
-
-  div.append(img,remove);
-  list.appendChild(div);
- });
-
- const count=document.createElement("p");
- count.className="photo-count";
- count.textContent=selectedImages.length+" foto(s) selecionada(s)";
- list.appendChild(count);
-}
-
-// CONFERIR ARQUIVOS ANTES DE PUBLICAR
-
-function collectSelectedFiles(){
-
- const input=document.getElementById("productImage");
- const files=Array.from(input.files||[]);
-
- if(!files.length)return;
-
- files.forEach(file=>{
-  if(file.type.startsWith("image/")){
-   selectedImages.push({
-    file:file,
-    url:URL.createObjectURL(file)
-   });
-  }
- });
-
- input.value="";
- renderPreview();
-}
-
-// ENVIAR FOTOS AO SUPABASE
-
-async function uploadImages(){
-
- const urls=[];
-
- for(let i=0;i<selectedImages.length;i++){
-
-  const item=selectedImages[i];
-
-  if(item.file){
-
-   const extension=(item.file.name.split(".").pop()||"jpg")
-    .toLowerCase()
-    .replace(/[^a-z0-9]/g,"");
-
-   const path="produtos/"+Date.now()+"-"+i+"-"+Math.random().toString(36).slice(2)+"."+extension;
-
-   const {error}=await supabaseClient.storage
-    .from("product-images")
-    .upload(path,item.file,{
-     cacheControl:"3600",
-     upsert:false,
-     contentType:item.file.type
-    });
-
-   if(error)throw error;
-
-   const {data}=supabaseClient.storage
-    .from("product-images")
-    .getPublicUrl(path);
-
-   if(!data||!data.publicUrl){
-    throw new Error("Não foi possível obter o endereço da foto "+(i+1)+".");
-   }
-
-   urls.push(data.publicUrl);
-
-  }else if(item.url){
-   urls.push(item.url);
-  }
- }
-
- if(urls.length===0){
-  throw new Error("Nenhuma foto foi enviada. Selecione as imagens novamente.");
- }
-
- return urls;
-}
-
-// PUBLICAR PRODUTO
-
-async function addProduct(){
-
- if(!isAdmin){
-  alert("Entre como administrador para publicar.");
-  return;
- }
-
- if(readingImages){
-  alert("Aguarde o carregamento das fotos.");
-  return;
- }
-
- // Recupera arquivos do campo caso ainda estejam lá.
- if(!selectedImages.length){
-  collectSelectedFiles();
- }
-
- const name=document.getElementById("productName").value.trim();
- const category=document.getElementById("productCategory").value;
- const platform=document.getElementById("productPlatform").value;
- const link=document.getElementById("productLink").value.trim();
-
- // VALIDAR CADA CAMPO SEPARADAMENTE
-
- if(!name){
-  alert("Digite o nome do produto.");
-  document.getElementById("productName").focus();
-  return;
- }
-
- if(!selectedImages.length){
-  alert("Adicione pelo menos uma foto do produto.");
-  return;
- }
-
- if(!category){
-  alert("Escolha a categoria do produto.");
-  document.getElementById("productCategory").focus();
-  return;
- }
-
- if(!platform){
-  alert("Escolha a plataforma do produto.");
-  document.getElementById("productPlatform").focus();
-  return;
- }
-
- if(!link){
-  alert("Adicione o link de afiliado.");
-  document.getElementById("productLink").focus();
-  return;
- }
-
- try{
-  const url=new URL(link);
-  if(!["http:","https:"].includes(url.protocol)){
-   throw new Error();
-  }
- }catch{
-  alert("Insira um link válido.");
-  return;
- }
-
- const button=document.getElementById("submitButton");
-
- button.disabled=true;
- button.textContent="⏳ SALVANDO PRODUTO...";
-
- setStatus("adminStatus","Enviando "+selectedImages.length+" foto(s) para a loja...");
-
- try{
-
-  const imageUrls=await uploadImages();
-
-  const record={
-   name:name,
-   category:category,
-   platform:platform,
-   link:link,
-   images:imageUrls
-  };
-
-  let result;
-
-  if(editingId!==null){
-
-   result=await supabaseClient
-    .from("products")
-    .update(record)
-    .eq("id",editingId)
-    .select();
-
-  }else{
-
-   result=await supabaseClient
-    .from("products")
-    .insert(record)
-    .select();
-
-  }
-
-  if(result.error)throw result.error;
-
-  await loadProducts();
-
-  resetForm();
-
-  setStatus("adminStatus","✅ Produto publicado com "+imageUrls.length+" foto(s)!");
-
-  alert("Produto publicado com sucesso! "+imageUrls.length+" foto(s) enviada(s).");
-
- }catch(error){
-
-  console.error("Erro ao publicar:",error);
-
-  setStatus("adminStatus","Erro ao salvar: "+(error.message||"Verifique o Supabase."));
-
-  alert(
-   "Não foi possível publicar o produto.\n\n"+
-   (error.message||"Verifique as permissões do Supabase.")
-  );
-
- }finally{
-
-  button.disabled=false;
-  button.textContent=editingId!==null?
-   "💾 SALVAR ALTERAÇÕES":
-   "🚀 PUBLICAR PRODUTO";
- }
-}
-
-// GALERIA DESLIZANTE
-
-function createGallery(product){
-
- const images=product.images||[];
- const gallery=document.createElement("div");
- gallery.className="gallery";
-
- if(!images.length)return gallery;
-
- let currentIndex=0;
-
- const img=document.createElement("img");
- img.src=images[0];
- img.alt=product.name;
- img.loading="lazy";
- img.onclick=()=>openImageModal(images[currentIndex]);
-
- gallery.appendChild(img);
-
- if(images.length===1)return gallery;
-
- const counter=document.createElement("div");
- counter.className="gallery-counter";
-
- const dots=document.createElement("div");
- dots.className="gallery-dots";
-
- function showSlide(index){
-
-  currentIndex=(index+images.length)%images.length;
-  img.src=images[currentIndex];
-
-  counter.textContent=(currentIndex+1)+" / "+images.length;
-
-  Array.from(dots.children).forEach((dot,i)=>{
-   dot.classList.toggle("active",i===currentIndex);
-  });
- }
-
- const prev=document.createElement("button");
- prev.className="gallery-arrow gallery-prev";
- prev.textContent="‹";
- prev.onclick=()=>showSlide(currentIndex-1);
-
- const next=document.createElement("button");
- next.className="gallery-arrow gallery-next";
- next.textContent="›";
- next.onclick=()=>showSlide(currentIndex+1);
-
- images.forEach((image,index)=>{
-  const dot=document.createElement("button");
-  dot.className="gallery-dot";
-  dot.onclick=()=>showSlide(index);
-  dots.appendChild(dot);
- });
-
- let touchStart=0;
-
- gallery.addEventListener("touchstart",e=>{
-  touchStart=e.changedTouches[0].screenX;
- },{passive:true});
-
- gallery.addEventListener("touchend",e=>{
-  const difference=touchStart-e.changedTouches[0].screenX;
-  if(Math.abs(difference)>40){
-   showSlide(currentIndex+(difference>0?1:-1));
-  }
- },{passive:true});
-
- gallery.append(prev,next,counter,dots);
- showSlide(0);
-
- return gallery;
-}
-
-// MOSTRAR PRODUTOS
-
-function renderProducts(list=products){
-
- const container=document.getElementById("products");
- container.innerHTML="";
-
- if(!list.length){
-  container.innerHTML='<div class="empty">Nenhum produto encontrado.</div>';
-  return;
- }
-
- list.forEach(product=>{
-
-  const card=document.createElement("div");
-  card.className="product";
-
-  const info=document.createElement("div");
-  info.className="product-info";
-
-  const name=document.createElement("h3");
-  name.textContent=product.name;
-
-  const offer=document.createElement("div");
-  offer.className="offer";
-  offer.textContent="🔥 PREÇO BAIXOU!";
-
-  const platform=document.createElement("div");
-  platform.className="platform";
-  platform.textContent="🛍️ "+product.platform;
-
-  const link=document.createElement("a");
-  link.className="buy-button";
-  link.href=product.link;
-  link.target="_blank";
-  link.rel="noopener noreferrer";
-  link.textContent="🛒 COMPRE AQUI";
-
-  info.append(name,offer,platform,link);
-
-  if(isAdmin){
-
-   const controls=document.createElement("div");
-   controls.className="manage-buttons";
-
-   const edit=document.createElement("button");
-   edit.className="edit-button";
-   edit.textContent="✏️ EDITAR";
-   edit.onclick=()=>editProduct(product.id);
-
-   const remove=document.createElement("button");
-   remove.className="delete-button";
-   remove.textContent="🗑️ EXCLUIR";
-   remove.onclick=()=>deleteProduct(product.id);
-
-   controls.append(edit,remove);
-   info.appendChild(controls);
-  }
-
-  card.append(createGallery(product),info);
-  container.appendChild(card);
- });
-}
-
-// EDITAR PRODUTO
-
-function editProduct(id){
-
- if(!isAdmin)return;
-
- const product=products.find(p=>p.id===id);
- if(!product)return;
-
- editingId=id;
-
- document.getElementById("productName").value=product.name;
- document.getElementById("productCategory").value=product.category;
- document.getElementById("productPlatform").value=product.platform;
- document.getElementById("productLink").value=product.link;
-
- selectedImages=(product.images||[]).map(url=>({
-  url:url,
-  file:null
- }));
-
- renderPreview();
-
- document.getElementById("formTitle").textContent="✏️ Editar Anúncio";
- document.getElementById("submitButton").textContent="💾 SALVAR ALTERAÇÕES";
- document.getElementById("cancelButton").style.display="block";
-
- document.getElementById("adminPanel").scrollIntoView({
-  behavior:"smooth"
- });
-}
-
-// EXCLUIR PRODUTO
-
-async function deleteProduct(id){
-
- if(!isAdmin)return;
-
- const product=products.find(p=>p.id===id);
-
- if(!product||!confirm("Tem certeza que deseja excluir "+product.name+"?"))return;
-
- const {error}=await supabaseClient
-  .from("products")
-  .delete()
-  .eq("id",id);
-
- if(error){
-  alert("Erro ao excluir: "+error.message);
-  return;
- }
-
- await loadProducts();
-
- if(editingId===id)resetForm();
-
- alert("Anúncio excluído!");
-}
-
-// LIMPAR FORMULÁRIO
-
-function resetForm(){
-
- selectedImages.forEach(item=>{
-  if(item.file&&item.url.startsWith("blob:")){
-   URL.revokeObjectURL(item.url);
-  }
- });
-
- editingId=null;
- selectedImages=[];
-
- document.getElementById("productName").value="";
- document.getElementById("productImage").value="";
- document.getElementById("productCategory").value="";
- document.getElementById("productPlatform").value="";
- document.getElementById("productLink").value="";
-
- renderPreview();
-
- document.getElementById("formTitle").textContent="➕ Cadastrar Produto";
- document.getElementById("submitButton").textContent="🚀 PUBLICAR PRODUTO";
- document.getElementById("cancelButton").style.display="none";
- document.getElementById("submitButton").disabled=false;
-}
-
-function cancelEdit(){
- resetForm();
-}
-
-// AMPLIAR FOTO
-
-function openImageModal(image){
- document.getElementById("modalImage").src=image;
- document.getElementById("imageModal").style.display="flex";
-}
-
-function closeImageModal(){
- document.getElementById("imageModal").style.display="none";
-}
-
-document.addEventListener("keydown",e=>{
- if(e.key==="Escape")closeImageModal();
-});
-
-// CATEGORIAS
-
-function filterCategory(category){
- const filtered=products.filter(p=>p.category===category);
- document.getElementById("productsTitle").textContent="📂 "+category;
- renderProducts(filtered);
-}
-
-function showAllProducts(){
- document.getElementById("searchInput").value="";
- document.getElementById("productsTitle").textContent="🔥 Produtos e Ofertas";
- renderProducts();
-}
-
-// PESQUISAR
-
-function searchProducts(){
-
- const search=document.getElementById("searchInput").value.toLowerCase();
-
- const filtered=products.filter(p=>
-  (p.name||"").toLowerCase().includes(search)
- );
-
- document.getElementById("productsTitle").textContent=
-  search?"🔎 Resultado da pesquisa":"🔥 Produtos e Ofertas";
-
- renderProducts(filtered);
-}
-
-// COMPARTILHAR
-
-async function shareStore(){
-
- const data={
-  title:"GEESPORTESRUSTICO",
-  text:"Confira as ofertas da nossa loja!",
-  url:window.location.href
+$("leadForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ const button=$("leadSubmit"),status=$("leadStatus");
+ button.disabled=true;button.textContent="ENVIANDO...";
+ const record={
+  name:$("leadName").value.trim(),
+  company:$("leadCompany").value.trim(),
+  phone:$("leadPhone").value.trim(),
+  email:$("leadEmail").value.trim()||null,
+  service:$("leadService").value,
+  message:$("leadMessage").value.trim(),
+  status:"Novo"
  };
+ const {error}=await db.from("ge_leads").insert(record);
+ button.disabled=false;button.textContent="ENVIAR SOLICITAÇÃO";
+ if(error){status.textContent="Não foi possível enviar. Tente novamente ou fale pelo WhatsApp.";console.error(error);return}
+ $("leadForm").reset();status.textContent="Solicitação enviada! Obrigado pelo contato.";
+});
 
- if(navigator.share){
-  try{
-   await navigator.share(data);
-  }catch(e){}
- }else{
-  try{
-   await navigator.clipboard.writeText(window.location.href);
-   alert("Link da loja copiado!");
-  }catch(e){
-   prompt("Copie o link da loja:",window.location.href);
-  }
- }
+function toggleLogin(){
+ $("loginBox").classList.toggle("hidden");
+ $("loginBox").scrollIntoView({behavior:"smooth",block:"center"});
 }
-
-// INICIAR
-
-async function initializeStore(){
- await checkSession();
- await loadProducts();
-}
-
-initializeStore();
-
-</script>
-
-<script>
-if("serviceWorker" in navigator){
- window.addEventListener("load",function(){
-  navigator.serviceWorker.register("./service-worker.js")
-  .then(registration=>console.log("Service Worker registrado:",registration.scope))
-  .catch(error=>console.log("Erro ao registrar Service Worker:",error));
+async function login(){
+ $("loginStatus").textContent="Verificando acesso...";
+ const {error}=await db.auth.signInWithPassword({
+  email:$("adminEmail").value.trim(),password:$("adminPassword").value
  });
+ if(error){$("loginStatus").textContent="Falha no login: "+error.message;return}
+ $("loginStatus").textContent="Login realizado.";
 }
-</script>
+async function logout(){await db.auth.signOut()}
+function setAdmin(value){
+ isAdmin=value;
+ $("adminArea").style.display=value?"block":"none";
+ $("loginBox").classList.add("hidden");
+ if(value)loadAdmin();
+}
+db.auth.onAuthStateChange((_event,session)=>setAdmin(!!session));
 
+function showTab(name,button){
+ document.querySelectorAll(".admin-tab").forEach(x=>x.classList.add("hidden"));
+ $("tab-"+name).classList.remove("hidden");
+ document.querySelectorAll(".tabs button").forEach(x=>x.classList.remove("active"));
+ button.classList.add("active");
+}
+function resetCompany(){$("companyForm").reset();$("companyId").value=""}
+function resetCampaign(){$("campaignForm").reset();$("campaignId").value=""}
+
+async function loadAdmin(){
+ if(!isAdmin)return;
+ const [c,p,l]=await Promise.all([
+  db.from("ge_companies").select("*").order("created_at",{ascending:false}),
+  db.from("ge_campaigns").select("*").order("created_at",{ascending:false}),
+  db.from("ge_leads").select("*").order("created_at",{ascending:false})
+ ]);
+ if(c.error||p.error||l.error){
+  alert("Erro ao carregar painel. Verifique as tabelas e permissões no Supabase.");
+  console.error(c.error,p.error,l.error);return;
+ }
+ companies=c.data||[];campaigns=p.data||[];
+ $("campaignCompany").innerHTML='<option value="">Sem empresa vinculada</option>'+
+  companies.map(x=>`<option value="${esc(x.id)}">${esc(x.name)}</option>`).join("");
+ $("adminCompanies").innerHTML=companies.map(x=>`
+  <div class="admin-item"><div><strong>${esc(x.name)}</strong><small>${esc(x.category||"")} • ${x.published?"Publicado":"Rascunho"}</small></div>
+  <div class="actions"><button class="edit" onclick="editCompany('${x.id}')">EDITAR</button><button class="del" onclick="deleteRecord('ge_companies','${x.id}')">EXCLUIR</button></div></div>`).join("")||"Nenhuma empresa cadastrada.";
+ $("adminCampaigns").innerHTML=campaigns.map(x=>`
+  <div class="admin-item"><div><strong>${esc(x.title)}</strong><small>${esc(x.type)} • ${x.published?"Publicado":"Rascunho"}</small></div>
+  <div class="actions"><button class="edit" onclick="editCampaign('${x.id}')">EDITAR</button><button class="del" onclick="deleteRecord('ge_campaigns','${x.id}')">EXCLUIR</button></div></div>`).join("")||"Nenhuma campanha cadastrada.";
+ $("adminLeads").innerHTML=(l.data||[]).map(x=>`
+  <div class="admin-item"><div><strong>${esc(x.name)} — ${esc(x.company)}</strong>
+  <small>${esc(x.phone)} • ${esc(x.email||"Sem e-mail")} • ${esc(x.service)}</small>
+  <small>${esc(x.message||"Sem mensagem")} • Status: ${esc(x.status)}</small></div>
+  <div class="actions"><button class="edit" onclick="updateLead('${x.id}','Em atendimento')">EM ATENDIMENTO</button><button class="del" onclick="deleteRecord('ge_leads','${x.id}')">EXCLUIR</button></div></div>`).join("")||"Nenhuma solicitação recebida.";
+}
+
+$("companyForm").addEventListener("submit",async e=>{
+ e.preventDefault();if(!isAdmin)return;
+ const id=$("companyId").value;
+ const record={
+  name:$("companyName").value.trim(),category:$("companyCategory").value.trim(),
+  description:$("companyDescription").value.trim(),image_url:validUrl($("companyImage").value)||null,
+  link:validUrl($("companyLink").value)||null,whatsapp:$("companyWhatsapp").value.trim(),
+  published:$("companyPublished").value==="true"
+ };
+ const result=id?await db.from("ge_companies").update(record).eq("id",id):await db.from("ge_companies").insert(record);
+ if(result.error){alert("Erro ao salvar empresa: "+result.error.message);return}
+ resetCompany();await loadAdmin();await loadPublic();alert("Empresa salva!");
+});
+$("campaignForm").addEventListener("submit",async e=>{
+ e.preventDefault();if(!isAdmin)return;
+ const id=$("campaignId").value;
+ const company=$("campaignCompany").value||null;
+ const record={
+  title:$("campaignTitle").value.trim(),type:$("campaignType").value,
+  description:$("campaignDescription").value.trim(),
+  image_url:validUrl($("campaignImage").value)||null,
+  link:validUrl($("campaignLink").value)||null,
+  company_id:company,published:$("campaignPublished").value==="true"
+ };
+ const result=id?await db.from("ge_campaigns").update(record).eq("id",id):await db.from("ge_campaigns").insert(record);
+ if(result.error){alert("Erro ao salvar campanha: "+result.error.message);return}
+ resetCampaign();await loadAdmin();await loadPublic();alert("Campanha salva!");
+});
+function editCompany(id){
+ const x=companies.find(v=>v.id===id);if(!x)return;
+ $("companyId").value=x.id;$("companyName").value=x.name;
+ $("companyCategory").value=x.category||"";$("companyDescription").value=x.description||"";
+ $("companyImage").value=x.image_url||"";$("companyLink").value=x.link||"";
+ $("companyWhatsapp").value=x.whatsapp||"";$("companyPublished").value=String(x.published);
+ $("tab-companies").scrollIntoView({behavior:"smooth"});
+}
+function editCampaign(id){
+ const x=campaigns.find(v=>v.id===id);if(!x)return;
+ $("campaignId").value=x.id;$("campaignTitle").value=x.title;
+ $("campaignType").value=x.type||"Publicidade";$("campaignDescription").value=x.description||"";
+ $("campaignImage").value=x.image_url||"";$("campaignLink").value=x.link||"";
+ $("campaignCompany").value=x.company_id||"";$("campaignPublished").value=String(x.published);
+ $("tab-campaigns").scrollIntoView({behavior:"smooth"});
+}
+async function updateLead(id,status){
+ const {error}=await db.from("ge_leads").update({status}).eq("id",id);
+ if(error){alert(error.message);return}loadAdmin();
+}
+async function deleteRecord(table,id){
+ if(!confirm("Confirma a exclusão deste registro?"))return;
+ const {error}=await db.from(table).delete().eq("id",id);
+ if(error){alert("Erro: "+error.message);return}
+ await loadAdmin();await loadPublic();
+}
+(async()=>{
+ const {data}=await db.auth.getSession();
+ setAdmin(!!data.session);
+ await loadPublic();
+})();
+</script>
 </body>
 </html>
+
