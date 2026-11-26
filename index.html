@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#050b18">
-<title>GE MARKETING DIGITAL | Estratégia. Tecnologia. Crescimento.</title>
-<link rel="manifest" href="./manifest.json">
-<style>
+```html
 :root{
 --bg:#050b18;--panel:#091529;--blue:#0865ff;--cyan:#42a5ff;
 --white:#f5f8ff;--muted:#a1aec4;--line:#193052;--green:#22d3a0
@@ -62,6 +54,11 @@ header{position:sticky;top:0;z-index:50;background:#050b18ed;backdrop-filter:blu
 .card h3{font-size:16px;margin:15px 0 9px}
 .card p{font-size:12px;color:#96a8c1;line-height:1.8}
 .company-card img,.campaign-card img{width:100%;height:175px;object-fit:cover;border-radius:8px;background:#10213b}
+.service-card{cursor:pointer;text-align:left;color:inherit;width:100%;font:inherit}
+.service-card:focus-visible,.brand:focus-visible{outline:2px solid #55aaff;outline-offset:3px}
+.brand-row .brand{cursor:pointer;background:transparent;font:inherit}
+.brand-row .brand.active{border-color:#348dff;background:#0d2d5c;color:#fff;box-shadow:0 0 18px #0865ff30}
+.filter-status{font-size:11px;color:#8fa8c8;text-align:center;margin:15px 0 0}
 .tag{display:inline-block;background:#0d2d5c;border:1px solid #1d5597;border-radius:30px;color:#68b7ff;font-size:9px;font-weight:bold;padding:7px 10px;letter-spacing:.7px;margin-top:12px}
 .company-card .btn,.campaign-card .btn{width:100%;margin-top:13px}
 .empty{grid-column:1/-1;text-align:center;padding:30px;border:1px dashed #294365;border-radius:12px;color:#94a8c3;font-size:13px}
@@ -149,7 +146,7 @@ footer a{color:#5aa9ff}
 </style>
 </head>
 <body>
-  <header>
+<header>
 <nav class="nav">
 <a class="logo" href="#">GE <span>MARKETING DIGITAL</span></a>
 <div class="navlinks">
@@ -208,12 +205,12 @@ footer a{color:#5aa9ff}
 <p>Uma estrutura de divulgação para empresas que desejam fortalecer sua presença digital.</p>
 </div>
 <div class="grid">
-<article class="card"><div class="icon">📢</div><h3>Publicidade digital</h3><p>Campanhas para apresentar sua empresa, produtos e serviços a novos públicos.</p></article>
-<article class="card"><div class="icon">🎬</div><h3>Vídeos UGC</h3><p>Conteúdos demonstrativos e vídeos promocionais com linguagem próxima do consumidor.</p></article>
-<article class="card"><div class="icon">🛍️</div><h3>Marketing de afiliados</h3><p>Divulgação de produtos com links rastreáveis e comissões por vendas elegíveis.</p></article>
-<article class="card"><div class="icon">🏢</div><h3>Divulgação de empresas</h3><p>Apresentação de negócios, lojas, marcas e prestadores de serviços.</p></article>
-<article class="card"><div class="icon">📱</div><h3>Conteúdo para redes</h3><p>Materiais promocionais para ampliar a presença da sua marca nos canais digitais.</p></article>
-<article class="card"><div class="icon">🤝</div><h3>Parcerias comerciais</h3><p>Oportunidades de colaboração entre empresas, criadores e marcas.</p></article>
+<button type="button" class="card service-card" data-service="Publicidade digital"><div class="icon">📢</div><h3>Publicidade digital</h3><p>Campanhas para apresentar sua empresa, produtos e serviços a novos públicos.</p></button>
+<button type="button" class="card service-card" data-service="Vídeos UGC"><div class="icon">🎬</div><h3>Vídeos UGC</h3><p>Conteúdos demonstrativos e vídeos promocionais com linguagem próxima do consumidor.</p></button>
+<button type="button" class="card service-card" data-service="Marketing de afiliados"><div class="icon">🛍️</div><h3>Marketing de afiliados</h3><p>Divulgação de produtos com links rastreáveis e comissões por vendas elegíveis.</p></button>
+<button type="button" class="card service-card" data-service="Divulgação de empresa"><div class="icon">🏢</div><h3>Divulgação de empresas</h3><p>Apresentação de negócios, lojas, marcas e prestadores de serviços.</p></button>
+<button type="button" class="card service-card" data-service="Outro"><div class="icon">📱</div><h3>Conteúdo para redes</h3><p>Materiais promocionais para ampliar a presença da sua marca nos canais digitais.</p></button>
+<button type="button" class="card service-card" data-service="Parceria comercial"><div class="icon">🤝</div><h3>Parcerias comerciais</h3><p>Oportunidades de colaboração entre empresas, criadores e marcas.</p></button>
 </div>
 </section>
 
@@ -226,14 +223,15 @@ footer a{color:#5aa9ff}
 <div class="grid" id="companiesList">
 <div class="empty">Carregando empresas...</div>
 </div>
-<div class="brand-row">
-<div class="brand">TECNOLOGIA<small>ESPAÇO PARA MARCAS</small></div>
-<div class="brand">MODA<small>ESPAÇO PARA MARCAS</small></div>
-<div class="brand">AUTOMOTIVO<small>ESPAÇO PARA MARCAS</small></div>
-<div class="brand">BELEZA<small>ESPAÇO PARA MARCAS</small></div>
-<div class="brand">SERVIÇOS<small>ESPAÇO PARA MARCAS</small></div>
+<div class="brand-row" aria-label="Filtrar empresas por categoria">
+<button type="button" class="brand" data-category="Tecnologia">TECNOLOGIA<small>VER EMPRESAS</small></button>
+<button type="button" class="brand" data-category="Moda">MODA<small>VER EMPRESAS</small></button>
+<button type="button" class="brand" data-category="Automotivo">AUTOMOTIVO<small>VER EMPRESAS</small></button>
+<button type="button" class="brand" data-category="Beleza">BELEZA<small>VER EMPRESAS</small></button>
+<button type="button" class="brand" data-category="Serviços">SERVIÇOS<small>VER EMPRESAS</small></button>
 </div>
-<p class="portfolio-note">Categorias ilustrativas. Não representam parcerias comerciais já confirmadas.</p>
+<p class="filter-status" id="companyFilterStatus">Exibindo todas as empresas publicadas.</p>
+<p class="portfolio-note">As empresas aparecem aqui automaticamente quando cadastradas e publicadas no painel administrativo.</p>
 </section>
 
 <section class="container" id="campanhas">
@@ -532,6 +530,22 @@ return "";
 
 $("year").textContent=new Date().getFullYear();
 
+document.querySelectorAll("[data-service]").forEach(card=>{
+ card.addEventListener("click",()=>{
+  $("leadService").value=card.dataset.service;
+  $("contato").scrollIntoView({behavior:"smooth",block:"start"});
+  setTimeout(()=>$("leadName").focus({preventScroll:true}),450);
+ });
+});
+
+document.querySelectorAll("[data-category]").forEach(button=>{
+ button.addEventListener("click",()=>{
+  activeCompanyCategory=button.dataset.category;
+  renderCompanies();
+  $("companiesList").scrollIntoView({behavior:"smooth",block:"center"});
+ });
+});
+
 function imageOrPlaceholder(url){
 return validUrl(url)||"https://placehold.co/600x400/09172c/55aaff?text=GE+MARKETING";
 }
@@ -539,6 +553,34 @@ return validUrl(url)||"https://placehold.co/600x400/09172c/55aaff?text=GE+MARKET
 /* =========================
    CONTEÚDO PÚBLICO
 ========================= */
+
+let activeCompanyCategory="";
+
+function normalizeCategory(value){
+ return String(value||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().trim();
+}
+
+function renderCompanies(){
+ const filtered=activeCompanyCategory
+  ?companies.filter(company=>normalizeCategory(company.category).includes(normalizeCategory(activeCompanyCategory)))
+  :companies;
+ $("companiesList").innerHTML=filtered.length
+  ?filtered.map(x=>`<article class="card company-card">
+   <img src="${esc(imageOrPlaceholder(x.image_url))}" alt="${esc(x.name)}" loading="lazy">
+   <span class="tag">${esc(x.category||"Empresa parceira")}</span>
+   <h3>${esc(x.name)}</h3>
+   <p>${esc(x.description||"Conheça esta empresa.")}</p>
+   ${validUrl(x.link)?`<a class="btn" href="${esc(validUrl(x.link))}" target="_blank" rel="noopener">CONHECER EMPRESA →</a>`:""}
+  </article>`).join("")
+  :`<div class="empty">${activeCompanyCategory?"Nenhuma empresa publicada nesta categoria ainda.":"Em breve, novas empresas e marcas serão apresentadas aqui."}</div>`;
+ $("companyFilterStatus").textContent=activeCompanyCategory
+  ?`Exibindo ${filtered.length} empresa(s) na categoria ${activeCompanyCategory}.`
+  :`Exibindo todas as ${filtered.length} empresa(s) publicada(s).`;
+ document.querySelectorAll("[data-category]").forEach(button=>{
+  button.classList.toggle("active",normalizeCategory(button.dataset.category)===normalizeCategory(activeCompanyCategory));
+  button.setAttribute("aria-pressed",String(normalizeCategory(button.dataset.category)===normalizeCategory(activeCompanyCategory)));
+ });
+}
 
 async function loadPublic(){
 
@@ -560,20 +602,7 @@ if(p.error)console.error("Erro campanhas:",p.error);
 companies=c.data||[];
 campaigns=p.data||[];
 
-$("companiesList").innerHTML=companies.length
-?companies.map(x=>`
-<article class="card company-card">
-<img src="${esc(imageOrPlaceholder(x.image_url))}" alt="${esc(x.name)}" loading="lazy">
-<span class="tag">${esc(x.category||"Empresa parceira")}</span>
-<h3>${esc(x.name)}</h3>
-<p>${esc(x.description||"Conheça esta empresa.")}</p>
-${validUrl(x.link)?`
-<a class="btn" href="${esc(validUrl(x.link))}" target="_blank" rel="noopener">
-CONHECER EMPRESA →
-</a>`:""}
-</article>
-`).join("")
-:'<div class="empty">Em breve, novas empresas e marcas serão apresentadas aqui.</div>';
+renderCompanies();
 
 $("campaignsList").innerHTML=campaigns.length
 ?campaigns.map(x=>`
